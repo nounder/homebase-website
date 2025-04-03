@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+@keyframes nounder-float {
+  0% {
+    filter: drop-shadow(0 5px 15px 0px rgba(0, 0, 0, 0.6));
+    transform: translatey(0px);
+  }
+  50% {
+    filter: drop-shadow(0 25px 15px 0px rgba(0, 0, 0, 0.2));
+    transform: translatey(calc(var(--nounder-float-y, 10%) * var(--hf, 1)));
+  }
+  100% {
+    filter: drop-shadow(0 5px 15px 0px rgba(0, 0, 0, 0.6));
+    transform: translatey(0px);
+  }
+}

@@ -1,0 +1,284 @@
+{
+  "days": [
+    {
+      "title": "Welcome to Base",
+      "date": "2025-04-07",
+      "events": [
+        {
+          "start": "2025-04-07T22:00:00Z",
+          "title": "Why Onchain/Why Base?",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Eric Brown",
+              "profile_url": "https://x.com/0xEricBrown",
+              "pfp_url": "https://pbs.twimg.com/profile_images/1828848273479659521/ie7rXx3t_400x400.jpg"
+            },
+            {
+              "name": "Patrick Hughes",
+              "profile_url": "https://x.com/hughescoin",
+              "pfp_url": "https://pbs.twimg.com/profile_images/1828476540406894592/tSO3mQxy_400x400.jpg"
+            }
+          ]
+        },
+        {
+          "start": "2025-04-07T23:00:00Z",
+          "title": "Onboarding & Opsec by Base DevRel team ",
+          "hosts": [
+            {
+              "name": "Eric Brown",
+              "profile_url": "https://x.com/0xEricBrown",
+              "pfp_url": "https://pbs.twimg.com/profile_images/1828848273479659521/ie7rXx3t_400x400.jpg"
+            },
+            {
+              "name": "Patrick Hughes",
+              "profile_url": "https://x.com/hughescoin",
+              "pfp_url": "https://pbs.twimg.com/profile_images/1828476540406894592/tSO3mQxy_400x400.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Onchain Use Cases",
+      "date": "2025-04-08",
+      "events": [
+        {
+          "start": "2025-04-08T23:00:00Z",
+          "title": "Base Builder Highlight",
+          "description": "",
+          "hosts": [
+            {
+              "name": "CatTown",
+              "profile_url": "https://warpcast.com/~/channel/cattown",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/aba4545c-08d1-4b1c-2cba-a2159c824b00/anim=false,fit=contain,f=auto,w=288"
+            },
+            {
+              "name": "Farcade",
+              "profile_url": "https://warpcast.com/~/channel/farcade",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/254c74e0-21cd-4044-7e42-0fa1ca882300/anim=false,fit=contain,f=auto,w=288"
+            },
+            {
+              "name": "PokPok",
+              "profile_url": "https://warpcast.com/pokpok",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FKaAFJq8.jpg"
+            },
+            {
+              "name": "Onboard",
+              "profile_url": "https://warpcast.com/onboard",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/5560eb55-5686-446b-db4d-307ba70f6e00/anim=false,fit=contain,f=auto,w=336"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Consumer Applications",
+      "date": "2025-04-09",
+      "events": [
+        {
+          "start": "2025-04-09T22:00:00Z",
+          "title": "Introduction to Farcaster",
+          "hosts": [
+            {
+              "name": "woj",
+              "profile_url": "https://warpcast.com/woj.eth",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fpeach-changing-limpet-80.mypinata.cloud%2Fipfs%2FQmZenqRfBERmodRVUHhLaYvYVsRasihVcMY2gqUP2tX7t2%3Ffilename%3Dprofile_picture.png"
+            }
+          ]
+        },
+        {
+          "start": "2025-04-09T23:00:00Z",
+          "title": "Building Miniapps with Minikit",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Samuel Huber",
+              "profile_url": "https://warpcast.com/samuellhuber.eth",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FOHMozjv.jpg"
+            }
+          ]
+        },
+        {
+          "start": "2025-04-10T00:00:00Z",
+          "title": "FC Founders Panel",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Nico",
+              "profile_url": "https://warpcast.com/n",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FVqIzGWf.jpg"
+            },
+            {
+              "name": "clanker",
+              "profile_url": "https://warpcast.com/clanker",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/d9c4e268-7c3d-4469-0552-4c5f29593100/anim=false,fit=contain,f=auto,w=336"
+            },
+            {
+              "name": "moshicam",
+              "profile_url": "https://warpcast.com/moshicam",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/e9035a50-f87f-4926-d1e8-bf3db1ba0a00/anim=false,fit=contain,f=auto,w=336"
+            },
+            {
+              "name": "Farville",
+              "profile_url": "https://warpcast.com/~/channel/farville",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/7607fcfd-566a-47a0-0293-cd3246b4e700/anim=false,fit=contain,f=auto,w=288"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Onchain Kit & Smart Wallets",
+      "date": "2025-04-14",
+      "events": [
+        {
+          "start": "2025-04-14T22:00:00Z",
+          "title": "Building Dapps",
+          "description": "",
+          "hosts": [
+            {
+              "name": "limone",
+              "profile_url": "https://warpcast.com/limone.eth",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/3acd1b12-0a6e-4370-ee6b-d81d3d717600/anim=false,fit=contain,f=auto,w=336"
+            }
+          ]
+        },
+        {
+          "start": "2025-04-14T23:00:00Z",
+          "title": "Building with Onchain Kit",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Dylan Steck",
+              "profile_url": "https://warpcast.com/dylsteck.eth",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2F2UTZYvn.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Onchain Games & AI Agents",
+      "date": "2025-04-15",
+      "events": [
+        {
+          "start": "2025-04-15T22:00:00Z",
+          "title": "Building Onchain Games",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Zac Prater",
+              "profile_url": "https://x.com/ZacPrater",
+              "pfp_url": "https://pbs.twimg.com/profile_images/1557565780224610305/1AyLjh57_400x400.jpg"
+            }
+          ]
+        },
+        {
+          "start": "2025-04-15T23:00:00Z",
+          "title": "AgentKit - Building AI Agents",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Rafi",
+              "profile_url": "https://warpcast.com/rafi",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/2bb7c55c-c793-4e4e-f736-29212918ce00/anim=false,fit=contain,f=auto,w=336"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Build Session",
+      "date": "2025-04-16",
+      "events": [
+        {
+          "start": "2025-04-16T22:00:00Z",
+          "title": "Smart Contract Development",
+          "hosts": [
+            {
+              "name": "Soheima Canton",
+              "profile_url": "https://warpcast.com/sohey",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FincbfXj.png"
+            },
+            {
+              "name": "Youssef El Allali",
+              "profile_url": "https://warpcast.com/youssea",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/ff116f28-015e-46b7-7db9-bda654975b00/anim=false,fit=contain,f=auto,w=336"
+            }
+          ]
+        },
+        {
+          "start": "2025-04-16T23:00:00Z",
+          "title": "Interactive Demos",
+          "description": "",
+          "hosts": []
+        }
+      ]
+    },
+    {
+      "title": "Minikit & Onchainkit",
+      "date": "2025-04-21",
+      "events": [
+        {
+          "start": "2025-04-21T17:00:00Z",
+          "title": "Minikit & Onchainkit",
+          "description": "",
+          "hosts": [
+            "Tina"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "AI Agents and MPC",
+      "date": "2025-04-22",
+      "events": [
+        {
+          "start": "2025-04-22T17:00:00Z",
+          "title": "AI Agents and MPC",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Dev3pack",
+              "profile_url": "https://www.dev3pack.xyz",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/5491426e-66de-4983-5c34-5174d27b1d00/anim=false,fit=contain,f=auto,w=288"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Agentkit",
+      "date": "2025-04-23",
+      "events": [
+        {
+          "start": "2025-04-23T17:00:00Z",
+          "title": "Agentkit",
+          "description": "",
+          "hosts": [
+            {
+              "name": "Sweetman",
+              "profile_url": "https://warpcast.com/sweetman.eth",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/34f82bba-bd77-47ca-236a-4f1f6fb3a700/anim=false,fit=contain,f=auto,w=336"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Base Appchain and AI",
+      "date": "2025-04-24",
+      "events": [
+        {
+          "start": "2025-04-24T17:00:00Z",
+          "title": "Base Appchain and Ai",
+          "description": "",
+          "hosts": [
+            "Giselle"
+          ]
+        }
+      ]
+    }
+  ]
+}

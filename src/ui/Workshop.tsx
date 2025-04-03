@@ -1,18 +1,90 @@
-import { createSignal, For, Show } from "solid-js"
+import {
+  createEffect,
+  createMemo,
+  createRenderEffect,
+  createSignal,
+  For,
+  onMount,
+  Show,
+} from "solid-js"
 import Workshops from "../workshops.json" with { type: "json" }
 
 export function WorkshopListCard() {
   const [isExpanded, setIsExpanded] = createSignal(false)
 
+  const timezones = Intl.supportedValuesOf("timeZone")
+
+  const [selectedTimezone, setSelectedTimezone] = createSignal(
+    null as string | null,
+  )
+
+  // make sure it's called on the client side
+  createEffect(() => {
+    const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+    setSelectedTimezone(currentTimezone)
+  })
+
+  const days = createMemo(() => {
+    const events = Workshops.days.flatMap(v => {
+      return v.events.map(v => {
+        return {
+          ...v,
+          start: new Date(v.start).toLocaleString("en-US", {
+            timeZone: selectedTimezone() ?? "UTC",
+          }),
+        }
+      })
+    })
+
+    const dayEvents = events.reduce((acc, v) => {
+      const day = new Date(v.start).toISOString().split("T")[0]
+      acc[day] = [...(acc[day] || []), v]
+      return acc
+    }, {} as Record<string, typeof events>)
+
+    return Object.keys(dayEvents).sort()
+      .map((v, i) => ({
+        title: Workshops.days[i]?.title ?? " ",
+        date: v,
+        events: dayEvents[v],
+      }))
+  })
+
   return (
     <div class="relative bg-white w-full rounded-md shadow-md border-[1px] border-gray-200 ">
       <div
-        class="sticky top-0 border-b-[1px] border-gray-200 p-3"
+        class="sticky flex justify-between top-0 border-b-[1px] border-gray-200 p-3 "
         style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
       >
         <h2 class="text-3xl font-bold">
           Workshops
         </h2>
+        <div
+          class="flex items-center gap-2 mt-2"
+          style="
+          opacity: 0;
+          animation: fade-in 0.2s ease-in-out forwards;
+          animation-delay: 0.5s;
+          "
+        >
+          <span class="text-sm text-gray-600">
+            Timezone:
+          </span>
+          <select
+            value={selectedTimezone() ?? "UTC"}
+            class={`text-sm border border-gray-300 rounded px-2 py-1 appearance-none w-32`}
+            onChange={e => setSelectedTimezone(e.target.value)}
+          >
+            <For each={timezones}>
+              {timezone => (
+                <option value={timezone}>
+                  {timezone}
+                </option>
+              )}
+            </For>
+          </select>
+        </div>
       </div>
 
       <div
@@ -21,7 +93,7 @@ export function WorkshopListCard() {
           "h-170": !isExpanded(),
         }}
       >
-        <For each={Workshops.days}>
+        <For each={days()}>
           {day => (
             <div>
               <div class="flex items-center gap-2">

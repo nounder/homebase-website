@@ -7,38 +7,47 @@ import {
   onMount,
   Show,
 } from "solid-js"
+import { createCalendarLinks } from "../calendar"
 import Workshops from "../workshops.json" with { type: "json" }
 
 export function WorkshopListCard() {
   const [isExpanded, setIsExpanded] = createSignal(false)
-
-  const timezones = Intl.supportedValuesOf("timeZone")
+  const [timezones, setTimezones] = createSignal<string[]>([])
 
   const [selectedTimezone, setSelectedTimezone] = createSignal(
     null as string | null,
   )
 
   // make sure it's called on the client side
+
   createEffect(() => {
+    const timezones = Intl.supportedValuesOf("timeZone")
+    setTimezones(timezones)
     const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
     setSelectedTimezone(currentTimezone)
   })
 
   const days = createMemo(() => {
+    const tz = selectedTimezone() ?? "UTC"
+
     const events = Workshops.days.flatMap(v => {
       return v.events.map(v => {
         return {
           ...v,
           start: new Date(v.start).toLocaleString("en-US", {
-            timeZone: selectedTimezone() ?? "UTC",
+            timeZone: tz,
           }),
         }
       })
     })
 
     const dayEvents = events.reduce((acc, v) => {
-      const day = new Date(v.start).toISOString().split("T")[0]
+      const day = new Date(v.start).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
       acc[day] = [...(acc[day] || []), v]
       return acc
     }, {} as Record<string, typeof events>)
@@ -76,7 +85,7 @@ export function WorkshopListCard() {
             class={`text-sm border border-gray-300 rounded px-2 py-1 appearance-none w-32`}
             onChange={e => setSelectedTimezone(e.target.value)}
           >
-            <For each={timezones}>
+            <For each={timezones()}>
               {timezone => (
                 <option value={timezone}>
                   {timezone}
@@ -125,51 +134,98 @@ export function WorkshopListCard() {
               <div class="flex flex-col ml-18 gap-4 mt-4">
                 <For each={day.events}>
                   {event => (
-                    <div class="flex border-t-[1px] border-gray-200 pt-2">
-                      <div>
-                        <div class="flex items-center gap-1 text-gray-500 text-sm">
-                          <ClockIcon size="16px" />
-                          <span>
-                            {new Date(event.start).toLocaleTimeString([], {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}
-                          </span>
+                    <div class="flex border-t-[1px] border-gray-200 pt-2 w-full">
+                      <div class="w-full">
+                        <div class="flex items-center w-full gap-1 text-gray-500 text-sm">
+                          <div class="flex items-center">
+                            <ClockIcon size="16px" />
+                            <span class="mx-1">
+                              {new Date(event.start).toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </span>
+                          </div>
+
+                          <div class="line-clamp-1">
+                            🗓️{"  "}
+                            <a
+                              title="Add to Apple / iCalendar"
+                              href={createCalendarLinks({
+                                title: event.title,
+                                start: new Date(event.start),
+                                end: new Date(
+                                  new Date(event.start).getTime()
+                                    + 1.5 * 60 * 60 * 1000,
+                                ),
+                              }).ical}
+                              class="hover:underline"
+                            >
+                              iCalendar
+                            </a>
+                            {" • "}
+                            <a
+                              title="Add to Google Calendar"
+                              target="_blank"
+                              href={createCalendarLinks({
+                                title: event.title,
+                                start: new Date(event.start),
+                                end: new Date(
+                                  new Date(event.start).getTime()
+                                    + 1.5 * 60 * 60 * 1000,
+                                ),
+                              }).google}
+                              class="hover:underline"
+                            >
+                              Google
+                            </a>
+                            {" • "}
+                            <a
+                              href={event.luma_url ?? ""}
+                              target="_blank"
+                              class="hover:underline"
+                            >
+                              Luma
+                            </a>
+                          </div>
                         </div>
 
-                        <div class="text-lg mb-2">
+                        <a
+                          class="block font-bold text-xl mt-1 mb-2 hover:underline"
+                          href={event.luma_url ?? ""}
+                          target="_blank"
+                        >
                           {event.title}
-                        </div>
+                        </a>
 
                         <div>
                           {event.description}
                         </div>
+
                         <div class="flex items-center gap-4 text-sm overflow-x-auto">
                           <For each={event.hosts}>
-                            {host => (typeof host === "string"
-                              ? (
-                                <span class="group whitespace-nowrap">
-                                  {host}
-                                </span>
-                              )
-                              : (
-                                <span class="group whitespace-nowrap shrink-0">
-                                  <Show when={host.pfp_url}>
-                                    <img
-                                      src={host.pfp_url}
-                                      alt={host.name}
-                                      class="rounded-full object-cover aspect-square w-6 inline mr-2"
-                                    />
-                                  </Show>
-                                  <a
-                                    href={host.profile_url ?? "#"}
-                                    class="inline group-hover:underline whitespace-nowrap"
-                                    target="_blank"
-                                  >
-                                    {host.name}
-                                  </a>
-                                </span>
-                              ))}
+                            {host => (
+                              <span class="group whitespace-nowrap shrink-0">
+                                {typeof host === "string" ? host : (
+                                  <>
+                                    <Show when={host.pfp_url}>
+                                      <img
+                                        src={host.pfp_url}
+                                        alt={host.name}
+                                        class="rounded-full object-cover aspect-square w-6 inline mr-2"
+                                      />
+                                    </Show>
+                                    <a
+                                      href={host.profile_url ?? "#"}
+                                      class="inline group-hover:underline whitespace-nowrap"
+                                      target="_blank"
+                                    >
+                                      {host.name}
+                                    </a>
+                                  </>
+                                )}
+                              </span>
+                            )}
                           </For>
                         </div>
                       </div>

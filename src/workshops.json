@@ -8,22 +8,24 @@
           "start": "2025-04-07T22:00:00Z",
           "title": "Why Onchain/Why Base?",
           "description": "",
+          "luma_url": "https://lu.ma/uken8jau",
           "hosts": [
             {
-              "name": "Eric Brown",
-              "profile_url": "https://x.com/0xEricBrown",
-              "pfp_url": "https://pbs.twimg.com/profile_images/1828848273479659521/ie7rXx3t_400x400.jpg"
+              "name": "Luciano",
+              "profile_url": "https://warpcast.com/luciano",
+              "pfp_url": "https://arweave.net/7hFATkROyNx10j_d_VQJmMSX2-20k5WmcTikN0al5UU/"
             },
             {
-              "name": "Patrick Hughes",
-              "profile_url": "https://x.com/hughescoin",
-              "pfp_url": "https://pbs.twimg.com/profile_images/1828476540406894592/tSO3mQxy_400x400.jpg"
+              "name": "Naomi",
+              "profile_url": "https://warpcast.com/afrochicks",
+              "pfp_url": "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/26d6fa5c-2dd8-4e6c-f788-58afe3133b00/rectcrop3"
             }
           ]
         },
         {
           "start": "2025-04-07T23:00:00Z",
           "title": "Onboarding & Opsec by Base DevRel team ",
+          "luma_url": "https://lu.ma/uken8jau",
           "hosts": [
             {
               "name": "Eric Brown",
@@ -47,6 +49,7 @@
           "start": "2025-04-08T23:00:00Z",
           "title": "Base Builder Highlight",
           "description": "",
+          "luma_url": "https://lu.ma/9ver7ud9",
           "hosts": [
             {
               "name": "CatTown",
@@ -79,6 +82,7 @@
         {
           "start": "2025-04-09T22:00:00Z",
           "title": "Introduction to Farcaster",
+          "luma_url": "https://lu.ma/4g8r2ihl",
           "hosts": [
             {
               "name": "woj",
@@ -91,6 +95,7 @@
           "start": "2025-04-09T23:00:00Z",
           "title": "Building Miniapps with Minikit",
           "description": "",
+          "luma_url": "https://lu.ma/4g8r2ihl",
           "hosts": [
             {
               "name": "Samuel Huber",
@@ -102,6 +107,7 @@
         {
           "start": "2025-04-10T00:00:00Z",
           "title": "FC Founders Panel",
+          "luma_url": "https://lu.ma/4g8r2ihl",
           "description": "",
           "hosts": [
             {
@@ -135,6 +141,7 @@
         {
           "start": "2025-04-14T22:00:00Z",
           "title": "Building Dapps",
+          "luma_url": "https://lu.ma/gfy0656o",
           "description": "",
           "hosts": [
             {
@@ -147,6 +154,7 @@
         {
           "start": "2025-04-14T23:00:00Z",
           "title": "Building with Onchain Kit",
+          "luma_url": "https://lu.ma/gfy0656o",
           "description": "",
           "hosts": [
             {
@@ -165,6 +173,7 @@
         {
           "start": "2025-04-15T22:00:00Z",
           "title": "Building Onchain Games",
+          "luma_url": "https://lu.ma/5nxnex83",
           "description": "",
           "hosts": [
             {
@@ -177,6 +186,7 @@
         {
           "start": "2025-04-15T23:00:00Z",
           "title": "AgentKit - Building AI Agents",
+          "luma_url": "https://lu.ma/5nxnex83",
           "description": "",
           "hosts": [
             {
@@ -195,6 +205,7 @@
         {
           "start": "2025-04-16T22:00:00Z",
           "title": "Smart Contract Development",
+          "luma_url": "https://lu.ma/ryeyruyc",
           "hosts": [
             {
               "name": "Soheima Canton",
@@ -211,6 +222,7 @@
         {
           "start": "2025-04-16T23:00:00Z",
           "title": "Interactive Demos",
+          "luma_url": "https://lu.ma/ryeyruyc",
           "description": "",
           "hosts": []
         }
@@ -223,6 +235,7 @@
         {
           "start": "2025-04-21T17:00:00Z",
           "title": "Minikit & Onchainkit",
+          "luma_url": "https://lu.ma/c27cmmsr",
           "description": "",
           "hosts": [
             "Tina"
@@ -237,6 +250,7 @@
         {
           "start": "2025-04-22T17:00:00Z",
           "title": "AI Agents and MPC",
+          "luma_url": "https://lu.ma/pqw1zcq3",
           "description": "",
           "hosts": [
             {
@@ -249,12 +263,13 @@
       ]
     },
     {
-      "title": "Agentkit",
+      "title": "AgentKit",
       "date": "2025-04-23",
       "events": [
         {
           "start": "2025-04-23T17:00:00Z",
           "title": "Agentkit",
+          "luma_url": "https://lu.ma/gb7mttpg",
           "description": "",
           "hosts": [
             {
@@ -273,6 +288,7 @@
         {
           "start": "2025-04-24T17:00:00Z",
           "title": "Base Appchain and Ai",
+          "luma_url": "https://lu.ma/hao4xya7",
           "description": "",
           "hosts": [
             "Giselle"

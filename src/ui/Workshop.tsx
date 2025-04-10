@@ -7,6 +7,7 @@ import {
   onMount,
   Show,
 } from "solid-js"
+import { createStore } from "solid-js/store"
 import { createCalendarLinks } from "../calendar"
 import Workshops from "../workshops.json" with { type: "json" }
 
@@ -60,6 +61,50 @@ export function WorkshopListCard() {
       }))
   })
 
+  const [daysElements, setDaysElements] = createStore<any[]>([])
+  createEffect(() => {
+    setDaysElements(Array.from({ length: days().length }, () => null))
+  })
+
+  const [latestDayIndex, setLatestDayIndex] = createSignal(0)
+
+  onMount(() => {
+    // Find today's date or the last day if all events are in the past
+    const today = new Date().toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+
+    let targetIndex = days().findIndex(day => day.date === today)
+    if (targetIndex === -1) {
+      targetIndex = days().length - 1
+    }
+
+    setLatestDayIndex(targetIndex)
+
+    setTimeout(() => {
+      // Get the corresponding element
+      const targetDayElement = daysElements.at(latestDayIndex())
+
+      if (!targetDayElement) {
+        return
+      }
+
+      const overflowContainer = targetDayElement.closest(".overflow-hidden")
+      if (overflowContainer) {
+        const margin = targetDayElement.offsetHeight * 0.1
+        const targetPosition = targetDayElement.offsetTop
+          - overflowContainer.offsetTop - margin
+
+        overflowContainer.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        })
+      }
+    }, 100)
+  })
+
   return (
     <div class="relative bg-white w-full rounded-md shadow-md border-[1px] border-gray-200 ">
       <div
@@ -103,8 +148,8 @@ export function WorkshopListCard() {
         }}
       >
         <For each={days()}>
-          {day => (
-            <div>
+          {(day, i) => (
+            <div ref={el => setDaysElements(i(), el)}>
               <div class="flex items-center gap-2">
                 <div class="w-12 h-12 bg-white rounded-lg shadow-sm flex flex-col overflow-hidden mb-2">
                   <div class="bg-red-500 text-white text-xs font-semibold py-0.5 text-center">
@@ -253,7 +298,23 @@ export function WorkshopListCard() {
           <div class="w-full max-w-[960px] flex justify-center">
             <button
               class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-colors shadow-md "
-              onClick={() => setIsExpanded(true)}
+              onClick={() => {
+                setIsExpanded(true)
+
+                // Scroll to the latest day after expanding
+                setTimeout(() => {
+                  const targetDayElement = daysElements.at(latestDayIndex())
+
+                  if (!targetDayElement) {
+                    return
+                  }
+
+                  targetDayElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  })
+                }, 20)
+              }}
             >
               See all workshops
             </button>

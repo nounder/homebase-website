@@ -46,30 +46,48 @@
       "date": "2025-04-08",
       "events": [
         {
+          "start": "2025-04-08T22:00:00Z",
+          "title": "Ownership/transparency/automation",
+          "description": "",
+          "luma_url": "https://lu.ma/9ver7ud9",
+          "hosts": [
+            {
+              "name": "Luciano",
+              "profile_url": "https://warpcast.com/luciano",
+              "pfp_url": "https://arweave.net/7hFATkROyNx10j_d_VQJmMSX2-20k5WmcTikN0al5UU/"
+            },
+            {
+              "name": "Juampi",
+              "profile_url": "https://warpcast.com/juampi",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/12a83564-ebe4-470e-cb3e-a8295f9ce300/anim=false,fit=contain,f=auto,w=336"
+            }
+          ]
+        },
+        {
           "start": "2025-04-08T23:00:00Z",
           "title": "Base Builder Highlight",
           "description": "",
           "luma_url": "https://lu.ma/9ver7ud9",
           "hosts": [
             {
-              "name": "CatTown",
-              "profile_url": "https://warpcast.com/~/channel/cattown",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/aba4545c-08d1-4b1c-2cba-a2159c824b00/anim=false,fit=contain,f=auto,w=288"
+              "name": "Rives",
+              "profile_url": "https://warpcast.com/~/channel/rives",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/f3bbcc6b-1ae1-42d6-a593-addef5d1e400/anim=false,fit=contain,f=auto,w=288"
             },
             {
-              "name": "Farcade",
-              "profile_url": "https://warpcast.com/~/channel/farcade",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/254c74e0-21cd-4044-7e42-0fa1ca882300/anim=false,fit=contain,f=auto,w=288"
+              "name": "Foxaria",
+              "profile_url": "https://warpcast.com/foxaria",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/bae70a90-5ca6-408f-4e36-acfcbecce000/anim=false,fit=contain,f=auto,w=336"
             },
             {
-              "name": "PokPok",
-              "profile_url": "https://warpcast.com/pokpok",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FKaAFJq8.jpg"
+              "name": "Queue",
+              "profile_url": "https://warpcast.com/queue",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/6178f642-a423-492b-2256-766c951b2800/anim=false,fit=contain,f=auto,w=336"
             },
             {
-              "name": "Onboard",
-              "profile_url": "https://warpcast.com/onboard",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/5560eb55-5686-446b-db4d-307ba70f6e00/anim=false,fit=contain,f=auto,w=336"
+              "name": "Zac Prater",
+              "profile_url": "https://x.com/ZacPrater",
+              "pfp_url": "https://pbs.twimg.com/profile_images/1557565780224610305/1AyLjh57_400x400.jpg"
             }
           ]
         }
@@ -111,31 +129,36 @@
           "description": "",
           "hosts": [
             {
-              "name": "Nico",
-              "profile_url": "https://warpcast.com/n",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FVqIzGWf.jpg"
+              "name": "Crystal",
+              "profile_url": "https://warpcast.com/crystaltai",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2FBo8e8Jl.jpg"
             },
             {
-              "name": "clanker",
-              "profile_url": "https://warpcast.com/clanker",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/d9c4e268-7c3d-4469-0552-4c5f29593100/anim=false,fit=contain,f=auto,w=336"
+              "name": "Robin",
+              "profile_url": "https://warpcast.com/robin",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/b2ecdce0-da58-44f8-d6c5-3300d1b76600/anim=false,fit=contain,f=auto,w=336"
             },
             {
-              "name": "moshicam",
-              "profile_url": "https://warpcast.com/moshicam",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/e9035a50-f87f-4926-d1e8-bf3db1ba0a00/anim=false,fit=contain,f=auto,w=336"
+              "name": "Shaya",
+              "profile_url": "https://warpcast.com/shaya",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/6b6bf141-5485-4b5a-88a8-d5ff361fe900/anim=false,fit=contain,f=auto,w=336"
             },
             {
-              "name": "Farville",
-              "profile_url": "https://warpcast.com/~/channel/farville",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/7607fcfd-566a-47a0-0293-cd3246b4e700/anim=false,fit=contain,f=auto,w=288"
+              "name": "Caso",
+              "profile_url": "https://warpcast.com/0xcaso",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/56e0b6da-5745-40e3-dcad-41402c686100/anim=false,fit=contain,f=auto,w=336"
+            },
+            {
+              "name": "itsmide",
+              "profile_url": "https://warpcast.com/itsmide.eth",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/a4b3c6d4-acae-45db-d1ea-cf27cba54e00/anim=false,fit=contain,f=auto,w=336"
             }
           ]
         }
       ]
     },
     {
-      "title": "Onchain Kit & Smart Wallets",
+      "title": "OnchainKit & Smart Wallets",
       "date": "2025-04-14",
       "events": [
         {
@@ -153,7 +176,7 @@
         },
         {
           "start": "2025-04-14T23:00:00Z",
-          "title": "Building with Onchain Kit",
+          "title": "Building with OnchainKit",
           "luma_url": "https://lu.ma/gfy0656o",
           "description": "",
           "hosts": [
@@ -185,7 +208,7 @@
         },
         {
           "start": "2025-04-15T23:00:00Z",
-          "title": "AgentKit - Building AI Agents",
+          "title": "Building AI Agents",
           "luma_url": "https://lu.ma/5nxnex83",
           "description": "",
           "hosts": [
@@ -229,12 +252,12 @@
       ]
     },
     {
-      "title": "Minikit & Onchainkit",
+      "title": "MiniKit & OnchainKit",
       "date": "2025-04-21",
       "events": [
         {
           "start": "2025-04-21T17:00:00Z",
-          "title": "Minikit & Onchainkit",
+          "title": "MiniKit & OnchainKit",
           "luma_url": "https://lu.ma/c27cmmsr",
           "description": "",
           "hosts": [

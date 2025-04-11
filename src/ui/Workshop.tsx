@@ -11,6 +11,13 @@ import { createStore } from "solid-js/store"
 import { createCalendarLinks } from "../calendar"
 import Workshops from "../workshops.json" with { type: "json" }
 
+const formatDate = (date: Date | string) =>
+  new Date(date).toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })
+
 export function WorkshopListCard() {
   const [isExpanded, setIsExpanded] = createSignal(false)
   const [timezones, setTimezones] = createSignal<string[]>([])
@@ -44,11 +51,7 @@ export function WorkshopListCard() {
     })
 
     const dayEvents = events.reduce((acc, v) => {
-      const day = new Date(v.start).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-      })
+      const day = formatDate(v.start)
       acc[day] = [...(acc[day] || []), v]
       return acc
     }, {} as Record<string, typeof events>)
@@ -70,13 +73,17 @@ export function WorkshopListCard() {
 
   onMount(() => {
     // Find today's date or the last day if all events are in the past
-    const today = new Date().toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
+    const today = formatDate(new Date())
+
+    console.log({
+      today,
+      days: days(),
     })
 
-    let targetIndex = days().findIndex(day => day.date === today)
+    let targetIndex = Math.max(
+      -1,
+      days().findIndex(day => day.date >= today),
+    )
     if (targetIndex === -1) {
       targetIndex = days().length - 1
     }
@@ -93,7 +100,7 @@ export function WorkshopListCard() {
 
       const overflowContainer = targetDayElement.closest(".overflow-hidden")
       if (overflowContainer) {
-        const margin = targetDayElement.offsetHeight * 0.1
+        const margin = targetDayElement.offsetHeight * 0.5
         const targetPosition = targetDayElement.offsetTop
           - overflowContainer.offsetTop - margin
 
@@ -133,7 +140,7 @@ export function WorkshopListCard() {
             <For each={timezones()}>
               {timezone => (
                 <option value={timezone}>
-                  {timezone}
+                  {timezone.split("/").at(-1).replaceAll("_", " ")}
                 </option>
               )}
             </For>

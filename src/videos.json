@@ -1,12 +1,52 @@
 [
-    {
-        "imageUrl": "/ETHDenverVideo.jpg",
-        "title": "Based House ETHDenver",
-        "url": "https://x.com/lucianodeangeIo/status/1899183264759439586"
-    },
-    {
-        "imageUrl": "/ETHDenverInterviewStattuete.jpg",
-        "title": "Base is for everyone with Stattuete",
-        "url": "https://warpcast.com/nickcryptopro/0xa5f7208b"
-    }
+  {
+    "title": "Homebase Day 3: Farcaster Founders Panel",
+    "imageUrl": "https://img.youtube.com/vi/rfEywTr9KU0/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=rfEywTr9KU0"
+  },
+  {
+    "title": "Homebase Day 3: Building Miniapps with MiniKit with Samuel Huber",
+    "imageUrl": "https://img.youtube.com/vi/uZZkFPYt-X4/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=uZZkFPYt-X4"
+  },
+  {
+    "title": "Homebase Day 3: Introduction to Farcaster with Woj",
+    "imageUrl": "https://img.youtube.com/vi/eJSC-KMCLdw/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=eJSC-KMCLdw"
+  },
+  {
+    "title": "Homebase Day 2: Base Builder Highlight",
+    "imageUrl": "https://img.youtube.com/vi/462UDi3sRss/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=462UDi3sRss"
+  },
+  {
+    "title": "Homebase Day 2: Ownership/Transparency/Automation with Juampi",
+    "imageUrl": "https://img.youtube.com/vi/A7RhV1Ze4vY/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=A7RhV1Ze4vY"
+  },
+  {
+    "title": "Homebase Day 1: Why Onchain with Base Team",
+    "imageUrl": "https://img.youtube.com/vi/v471NUNthiI/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=v471NUNthiI"
+  },
+  {
+    "title": "Homebase Day 1: Why Onchain / Why Base with Naomi",
+    "imageUrl": "https://img.youtube.com/vi/htkNiTzYv4c/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=htkNiTzYv4c"
+  },
+  {
+    "title": "Homebase Day 1: Why Onchain / Why Base",
+    "imageUrl": "https://img.youtube.com/vi/ApAuk0AbVts/mqdefault.jpg",
+    "url": "https://www.youtube.com/watch?v=ApAuk0AbVts"
+  },
+  {
+    "imageUrl": "/ETHDenverVideo.jpg",
+    "title": "Based House ETHDenver",
+    "url": "https://x.com/lucianodeangeIo/status/1899183264759439586"
+  },
+  {
+    "imageUrl": "/ETHDenverInterviewStattuete.jpg",
+    "title": "Base is for everyone with Stattuete",
+    "url": "https://warpcast.com/nickcryptopro/0xa5f7208b"
+  }
 ]

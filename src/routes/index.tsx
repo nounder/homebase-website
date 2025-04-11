@@ -21,7 +21,7 @@ export default function Home() {
         <BasedHouseCard />
       </div>
 
-      <div class="flex flex-col pt-6 w-full max-w-[960px] mx-auto z-10 relative gap-8">
+      <div class="flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8">
         <VideoGallery />
       </div>
     </main>

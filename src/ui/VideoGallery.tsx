@@ -1,7 +1,9 @@
-import { For } from "solid-js"
+import { createSignal, For, Show } from "solid-js"
 import Videos from "../videos.json" with { type: "json" }
 
 export function VideoGallery() {
+  const [isExpanded, setIsExpanded] = createSignal(false)
+
   return (
     <div class="relative bg-white w-full p-4">
       <div class="text-3xl mb-4">
@@ -10,28 +12,31 @@ export function VideoGallery() {
         </span>
       </div>
 
-      <div class="overflow-hidden relative">
+      <div class="relative">
         <div
-          class="flex overflow-x-auto pb-4 scrollbar-hide"
-          style="scroll-snap-type: x mandatory;"
+          class="grid gap-4 grid-cols-2 md:grid-cols-3 overflow-hidden"
+          style={{
+            "max-height": isExpanded() ? "none" : "600px",
+          }}
         >
           <For each={Videos}>
             {(video, index) => (
-              <div class="flex-shrink-0 w-[400px] max-sm:w-[300px] pr-4 scroll-snap-align-start relative">
+              <div class="relative">
                 <a
                   href={video.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="block h-full group"
                 >
-                  <div class="group-hover:opacity-85 transition-shadow duration-200 h-full flex flex-col">
+                  <div class="group-hover:scale-[1.03] group-hover:rotate-1 transition-transform duration-200 h-full flex flex-col">
                     <img
+                      loading="lazy"
                       src={video.imageUrl}
                       alt={video.title}
                       class="w-full aspect-video object-cover rounded-sm shadow-md"
                     />
                     <div class="mt-2 bg-white flex-grow">
-                      <h3 class="line-clamp-1 text-xl group-hover:underline">
+                      <h3 class="line-clamp-2 text-md font-bold">
                         {video.title}
                       </h3>
                     </div>
@@ -43,20 +48,25 @@ export function VideoGallery() {
         </div>
       </div>
 
-      <style>
-        {`
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-                .scroll-snap-align-start {
-                    scroll-snap-align: start;
-                }
-            `}
-      </style>
+      <Show when={!isExpanded()}>
+        <div class="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20">
+          <div style="
+            position: absolute;
+            top: -100%;
+            z-index: -1;
+            background: linear-gradient(to bottom, rgba(255 255 255 / 0%) 0%, rgba(255 255 255 / 100%) 40%);
+            width: 100%;
+            height: 200%;
+          ">
+          </div>
+          <button
+            class="cursor-pointer text-blue-500 font-bold py-3 px-6 rounded-lg transition-colors drop-shadow-md"
+            onClick={() => setIsExpanded(true)}
+          >
+            See all videos
+          </button>
+        </div>
+      </Show>
     </div>
   )
 }

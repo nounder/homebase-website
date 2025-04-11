@@ -100,7 +100,7 @@ export function WorkshopListCard() {
 
       const overflowContainer = targetDayElement.closest(".overflow-hidden")
       if (overflowContainer) {
-        const margin = targetDayElement.offsetHeight * 0.5
+        const margin = targetDayElement.offsetHeight * 0.4
         const targetPosition = targetDayElement.offsetTop
           - overflowContainer.offsetTop - margin
 
@@ -130,7 +130,7 @@ export function WorkshopListCard() {
           "
         >
           <span class="text-sm text-gray-600">
-            Timezone:
+            Location:
           </span>
           <select
             value={selectedTimezone() ?? "UTC"}
@@ -140,7 +140,7 @@ export function WorkshopListCard() {
             <For each={timezones()}>
               {timezone => (
                 <option value={timezone}>
-                  {timezone.split("/").at(-1).replaceAll("_", " ")}
+                  {timezone.split("/").at(-1)!.replaceAll("_", " ")}
                 </option>
               )}
             </For>

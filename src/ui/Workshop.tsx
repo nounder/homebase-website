@@ -115,7 +115,7 @@ export function WorkshopListCard() {
   return (
     <div class="relative bg-white w-full rounded-md shadow-md border-[1px] border-gray-200 ">
       <div
-        class="sticky flex justify-between top-0 border-b-[1px] border-gray-200 p-3 "
+        class="sticky flex justify-between top-0 border-b-[1px] border-gray-200 p-3 z-20"
         style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
       >
         <h2 class="text-3xl font-bold">
@@ -149,9 +149,12 @@ export function WorkshopListCard() {
       </div>
 
       <div
-        class="flex flex-col gap-6 p-4 overflow-hidden"
-        classList={{
-          "h-170": !isExpanded(),
+        class="flex flex-col gap-6 p-4 overflow-hidden relative"
+        style={{
+          "mask-image": !isExpanded()
+            ? "linear-gradient(to bottom, transparent, black 100px, black calc(100% - 160px), transparent)"
+            : "none",
+          height: isExpanded() ? "auto" : "1000px",
         }}
       >
         <For each={days()}>
@@ -292,16 +295,6 @@ export function WorkshopListCard() {
 
       <Show when={!isExpanded()}>
         <div class="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20">
-          <div style="
-            position: absolute;
-            top: -100%;
-            z-index: -1;
-            background:  linear-gradient(to bottom, rgba(255 255 255 / 0%) 0%, rgba(255 255 255 / 100%) 40%);
-            width: 100%;
-            height: 200%;
-
-          ">
-          </div>
           <div class="w-full max-w-[960px] flex justify-center">
             <button
               class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-colors shadow-md "

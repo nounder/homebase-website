@@ -256,12 +256,12 @@
       "date": "2025-04-21",
       "events": [
         {
-          "start": "2025-04-21T17:00:00Z",
+          "start": "2025-04-21T16:00:00Z",
           "title": "MiniKit & OnchainKit",
           "luma_url": "https://lu.ma/c27cmmsr",
           "description": "",
           "hosts": [
-            "Tina"
+            "Soheima"
           ]
         }
       ]
@@ -271,15 +271,15 @@
       "date": "2025-04-22",
       "events": [
         {
-          "start": "2025-04-22T17:00:00Z",
+          "start": "2025-04-22T16:00:00Z",
           "title": "AI Agents and MPC",
           "luma_url": "https://lu.ma/pqw1zcq3",
           "description": "",
           "hosts": [
             {
-              "name": "Dev3pack",
-              "profile_url": "https://www.dev3pack.xyz",
-              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/5491426e-66de-4983-5c34-5174d27b1d00/anim=false,fit=contain,f=auto,w=288"
+              "name": "Sneha",
+              "profile_url": "https://warpcast.com/audaciousSneha",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/imagedelivery/BXluQx4ige9GuW0Ia56BHw/9e8fe886-c414-4cc6-b047-a8aca3f8f900/anim=false,fit=contain,f=auto,w=336"
             }
           ]
         }
@@ -290,7 +290,7 @@
       "date": "2025-04-23",
       "events": [
         {
-          "start": "2025-04-23T17:00:00Z",
+          "start": "2025-04-23T16:00:00Z",
           "title": "Agentkit",
           "luma_url": "https://lu.ma/gb7mttpg",
           "description": "",
@@ -309,12 +309,16 @@
       "date": "2025-04-24",
       "events": [
         {
-          "start": "2025-04-24T17:00:00Z",
+          "start": "2025-04-24T16:00:00Z",
           "title": "Base Appchain and Ai",
           "luma_url": "https://lu.ma/hao4xya7",
           "description": "",
           "hosts": [
-            "Giselle"
+            {
+              "name": "Ginie",
+              "profile_url": "https://warpcast.com/gi",
+              "pfp_url": "https://wrpcd.net/cdn-cgi/image/anim=false,fit=contain,f=auto,w=336/https%3A%2F%2Fi.imgur.com%2Fw68pJR8.jpg"
+            }
           ]
         }
       ]

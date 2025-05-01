@@ -1,0 +1,14 @@
+{
+  "version": "next",
+  "imageUrl": "https://homebase.love/OpenGraphImage.png",
+  "button": {
+    "title": "Locate Homebase",
+    "action": {
+      "type": "launch_frame",
+      "name": "Homebase",
+      "url": "https://homebase.love",
+      "splashImageUrl": "https://homebase.love/WhiteLogo.png",
+      "splashBackgroundColor": "#1761FF"
+    }
+  }
+}

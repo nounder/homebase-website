@@ -1,5 +1,6 @@
 // @refresh reload
 import { createHandler, StartServer } from "@solidjs/start/server"
+import FrameEmbedJson from "./FrameEmbed.json"
 
 export default createHandler(() => (
   <StartServer
@@ -10,6 +11,7 @@ export default createHandler(() => (
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/favicon.ico" />
           <meta property="og:image" content="/OpenGraphImage.png" />
+          <meta name="fc:frame" content={JSON.stringify(FrameEmbedJson)} />
           <meta
             name="description"
             content="Homebase organizes events, hacker houses, and workshops for builders and creators"

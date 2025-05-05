@@ -135,7 +135,7 @@ export function WorkshopListCard() {
         class="sticky flex justify-between top-0 px-5 z-20"
 
       >
-        <h2 class="flex-col px-10 flex items-left w-full items-center b-1 text-[#1761ff]">
+        <h2 class="flex-col px-10 flex items-left w-full items-center text-[#1761ff]">
           <span class="text-5xl font-bold">Workshops</span>
           <span class="text-gray-500 text-lg font-medium">
             Get your hands dirty and level up your skills.
@@ -172,7 +172,7 @@ export function WorkshopListCard() {
       </div>
 
       <div
-        class={`flex flex-col gap-6 px-20 mt-5 overflow-hidden relative ${isExpanded() && "pb-20"}`}
+        class={`flex flex-col gap-6 px-20 mt-0 relative ${isExpanded() ? "pb-20 ":"overflow-hidden"}`}
         style={{
           "mask-image": !isExpanded()
             ? "linear-gradient(to bottom, transparent, black 100px, black calc(100% - 160px), transparent)"
@@ -218,7 +218,7 @@ export function WorkshopListCard() {
                       <div class="w-full">
                         <div class="flex flex-col  w-full gap-1 text-gray-500 text-sm">
                           <div class="flex flex-col ">
-                            <span class="text-xl font-semibold">
+                            <span class="text-2xl font-semibold">
                             {event.title}
                             </span>
                            

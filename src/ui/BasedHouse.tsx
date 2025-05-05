@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js"
-import { createStore } from "solid-js/store"
 import BasePaint414 from "../../public/BasedPaint414.png"
 
 export function BasedHouseCard() {

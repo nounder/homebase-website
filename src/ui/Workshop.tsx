@@ -6,10 +6,12 @@ import {
   For,
   onMount,
   Show,
+  Suspense,
 } from "solid-js"
 import { createStore } from "solid-js/store"
 import { createCalendarLinks } from "../calendar"
 import Workshops from "../workshops.json" with { type: "json" }
+import { PencilRulerIcon } from "lucide-solid"
 
 const formatDate = (date: Date | string) =>
   new Date(date).toLocaleDateString("en-CA", {
@@ -113,15 +115,36 @@ export function WorkshopListCard() {
   })
 
   return (
-    <div class="relative bg-white w-full rounded-md shadow-md border-[1px] border-gray-200 ">
+    <>
+    <div class="w-full h-195">
+      <div class="m-5 h-[100%] overflow-hidden">
+        <Suspense fallback={<div class="animate-pulse bg-gray-200 w-full h-full" />}>
+          <iframe
+              src="https://homebase-map-nextjs.vercel.app"
+              style="width: 100%; height: 94%; margin: 0; padding: 0; border: none; overflow: hidden; user-select: none; border-radius: 19px; border: 3px dashed rgba(23, 96, 255, 0.24);"
+              allow="geolocation"
+
+              // @ts-ignore
+              scrolling="no"
+            />
+          </Suspense>
+        </div>
+      </div>
+      <div class="relative w-full ">
       <div
-        class="sticky flex justify-between top-0 border-b-[1px] border-gray-200 p-3 z-20"
-        style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
+        class="sticky flex justify-between top-0 px-5 z-20"
+
       >
-        <h2 class="text-3xl font-bold">
-          Workshops
+        <h2 class="flex-col px-10 flex items-left w-full items-center b-1 text-[#1761ff]">
+          <span class="text-5xl font-bold">Workshops</span>
+          <span class="text-gray-500 text-lg font-medium">
+            Get your hands dirty and level up your skills.
+          </span>
         </h2>
-        <div
+        <div>
+          {/* When locations are needed, add the location dropdown */}
+        </div>
+        {/* <div
           class="flex items-center gap-2 mt-2"
           style="
           opacity: 0;
@@ -145,23 +168,23 @@ export function WorkshopListCard() {
               )}
             </For>
           </select>
-        </div>
+        </div> */}
       </div>
 
       <div
-        class="flex flex-col gap-6 p-4 overflow-hidden relative"
+        class={`flex flex-col gap-6 px-20 mt-5 overflow-hidden relative ${isExpanded() && "pb-20"}`}
         style={{
           "mask-image": !isExpanded()
             ? "linear-gradient(to bottom, transparent, black 100px, black calc(100% - 160px), transparent)"
             : "none",
-          height: isExpanded() ? "auto" : "1000px",
+          height: isExpanded() ? "auto" : "1000px ",
         }}
       >
         <For each={days()}>
           {(day, i) => (
-            <div ref={el => setDaysElements(i(), el)}>
+            <div ref={el => setDaysElements(i(), el)}  class="border-gray-200">
               <div class="flex items-center gap-2">
-                <div class="w-12 h-12 bg-white rounded-lg shadow-sm flex flex-col overflow-hidden mb-2">
+                <div class="w-12 h-12 bg-white rounded-lg mr-2 shadow-sm flex flex-col overflow-hidden mb-2">
                   <div class="bg-red-500 text-white text-xs font-semibold py-0.5 text-center">
                     {new Date(day.date).toLocaleDateString("en-US", {
                       month: "short",
@@ -173,7 +196,7 @@ export function WorkshopListCard() {
                 </div>
 
                 <div class="flex flex-col">
-                  <span class="text-lg">
+                  <span class="text-lg font-semibold">
                     {day.title}
                   </span>
 
@@ -186,13 +209,20 @@ export function WorkshopListCard() {
                 </div>
               </div>
 
-              <div class="flex flex-col ml-18 gap-4 mt-4">
+              <div class="flex flex-col ml-18 gap-4 mt-4 pb-3">
                 <For each={day.events}>
                   {event => (
-                    <div class="flex border-t-[1px] border-gray-200 pt-2 w-full">
+                    <div onClick={()=>{
+                      window.open(event.luma_url ?? "")
+                    }} class="flex w-full transition-all duration-[150ms] hover:bg-[#1761ff]/10 p-3 rounded-xl border-2 border-gray-100 cursor-pointer hover:border-[#1761ff]/30">
                       <div class="w-full">
-                        <div class="flex items-center w-full gap-1 text-gray-500 text-sm">
-                          <div class="flex items-center">
+                        <div class="flex flex-col  w-full gap-1 text-gray-500 text-sm">
+                          <div class="flex flex-col ">
+                            <span class="text-xl font-semibold">
+                            {event.title}
+                            </span>
+                           
+                            <div class="flex w-full ">
                             <ClockIcon size="16px" />
                             <span class="mx-1">
                               {new Date(event.start).toLocaleTimeString([], {
@@ -200,6 +230,7 @@ export function WorkshopListCard() {
                                 minute: "2-digit",
                               })}
                             </span>
+                            </div>
                           </div>
 
                           <div class="line-clamp-1">
@@ -245,13 +276,6 @@ export function WorkshopListCard() {
                           </div>
                         </div>
 
-                        <a
-                          class="block font-bold text-xl mt-1 mb-2 hover:underline"
-                          href={event.luma_url ?? ""}
-                          target="_blank"
-                        >
-                          {event.title}
-                        </a>
 
                         <div>
                           {event.description}
@@ -260,7 +284,7 @@ export function WorkshopListCard() {
                         <div class="flex items-center gap-4 text-sm overflow-x-auto">
                           <For each={event.hosts}>
                             {host => (
-                              <span class="group whitespace-nowrap shrink-0">
+                              <span class="group whitespace-nowrap shrink-0 mt-2">
                                 {typeof host === "string" ? host : (
                                   <>
                                     <Show when={host.pfp_url}>
@@ -297,7 +321,7 @@ export function WorkshopListCard() {
         <div class="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20">
           <div class="w-full max-w-[960px] flex justify-center">
             <button
-              class="cursor-pointer bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-colors shadow-md "
+              class="cursor-pointer bg-[#1761ff]/90 hover:bg-[#1761ff] text-white py-3 px-6 font-semibold rounded-xl transition-colors shadow-[0_0_10px_rgba(23,97,255,0.5)]"
               onClick={() => {
                 setIsExpanded(true)
 
@@ -322,6 +346,7 @@ export function WorkshopListCard() {
         </div>
       </Show>
     </div>
+    </>
   )
 }
 

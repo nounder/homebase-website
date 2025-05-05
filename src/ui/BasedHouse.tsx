@@ -1,14 +1,16 @@
 import { createSignal } from "solid-js"
 import BasePaint414 from "../../public/BasedPaint414.png"
+import { Home, Users } from "lucide-solid"
 
 export function BasedHouseCard() {
   return (
     <div class="flex flex-row max-sm:flex-col-reverse items-center bg-white w-full p-4 my-6 gap-8 max-sm:text-center">
       <div class="flex flex-col gap-2 justify-center">
-        <h2 class="text-3xl font-bold ">
-          Based Houses
+        <h2 class="text-5xl font-bold flex items-center gap-2">
+          <Users size="45px" />
+          Based houses
         </h2>
-        <div class="text-xl text-gray-600">
+        <div class="text-xl text-gray-600 w-[700px]">
           Physical spaces for builders and creators to gather, work, and learn
           together.
         </div>
@@ -16,11 +18,11 @@ export function BasedHouseCard() {
         <div>
           <a
             href="https://warpcast.com/rafi/0x14fd4e8e"
-            class="transition-opacity hover:opacity-70 text-blue-500 text-xl inline-flex items-center gap-2"
+            class="hover:opacity-70 font-semibold hover:pl-3.5 py-2 transition-all duration-200 rounded-lg pr-5 hover:bg-[#1761ff]/10 text-[#1761ff] text-lg inline-flex items-center gap-2"
             target="_blank"
           >
             Learn more
-            <span>
+            <span class="transition-all duration-200">
               ›
             </span>
           </a>
@@ -29,7 +31,7 @@ export function BasedHouseCard() {
 
       <div class="flex-grow aspect-square max-sm:w-[50vw] md:w-[50%]">
         <BasedHouseBlueprint />
-        <div class="text-gray-600 text-center mt-8">
+        <div class="text-gray-600 text-center mt-8 z-[10000]">
           BasedPaint #414 by creamy.eth
         </div>
       </div>

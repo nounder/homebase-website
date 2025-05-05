@@ -39,7 +39,7 @@ export default function Home() {
         <VideoGallery />
       </div>
       <div
-        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
+        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-[1] relative gap-8`}
       >
         <Footer />
       </div>

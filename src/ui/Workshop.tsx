@@ -121,7 +121,7 @@ export function WorkshopListCard() {
         <Suspense fallback={<div class="animate-pulse bg-gray-200 w-full h-full" />}>
           <iframe
               src="https://homebase-map-nextjs.vercel.app"
-              style="width: 100%; height: 94%; margin: 0; padding: 0; border: none; overflow: hidden; user-select: none; border-radius: 19px; border: 3px dashed rgba(23, 96, 255, 0.24);"
+              style="width: 100%; height: 94%; margin: 0; padding: 0; border: none; overflow: hidden; user-select: none; border-radius: 17px; border: 3px dashed rgba(23, 96, 255, 0.24);"
               allow="geolocation"
 
               // @ts-ignore
@@ -135,10 +135,13 @@ export function WorkshopListCard() {
         class="sticky flex justify-between top-0 px-5 z-20"
 
       >
-        <h2 class="flex-col px-10 flex items-left w-full items-center text-[#1761ff]">
-          <span class="text-5xl font-bold">Workshops</span>
-          <span class="text-gray-500 text-lg font-medium">
-            Get your hands dirty and level up your skills.
+        <h2 class="flex-col px-10 flex items-center w-full ">
+          <div class="flex gap-2 items-center">
+            <PencilRulerIcon size="40px" class="text-black" />
+            <span class="text-5xl font-bold text-black">Workshops</span>
+          </div>
+          <span class="text-gray-500/80 text-lg font-medium">
+            Learn about any topic, from anywhere.
           </span>
         </h2>
         <div>

@@ -42,7 +42,7 @@ export function VideoGallery() {
 
   return (
     <div class="relative bg-white w-full flex flex-col items-center p-4">
-      <div class="text-5xl w-fit justify-center px-5 py-3 rounded-xl bg-[#1761ff]/10 text-[#1761ff] font-bold flex items-center gap-3">
+      <div class="text-5xl w-fit justify-center px-5 py-3 rounded-xl text-black font-bold flex items-center gap-3">
         <VideoIcon size="45px" />
         <span> Latest videos </span>
       </div>

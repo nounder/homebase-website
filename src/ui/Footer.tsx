@@ -11,9 +11,9 @@ export function Footer() {
           Follow us on X, we regularly post about our based house, workshops &
           events.
         </span>
-        <button class="mt-8 mb-10 bg-white px-5 py-2 font-medium rounded-full hover:scale-[1.05] text-[#1761ff] transition-all duration-[150ms] cursor-pointer">
+        <a href="https://x.com/homebasedotlove" target="_blank" class="outline-none mt-8 mb-10 bg-white px-5 py-2 font-medium rounded-full hover:scale-[1.05] text-[#1761ff] transition-all duration-[150ms] cursor-pointer">
           Follow @homebasedotlove
-        </button>
+        </a>
       </div>
       <img 
         src="/HomebaseWorld.webp" 

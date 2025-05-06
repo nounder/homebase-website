@@ -59,7 +59,7 @@ export function Header() {
           </div>
 
           <div class="flex flex-col items-center text-white/80 -mt-3 mb-5">
-            Where based builders and creators are at home.
+            Where based builders and creators come to grow.
           </div>
         </div>
 

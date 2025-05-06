@@ -4,7 +4,7 @@ import { Home, Users } from "lucide-solid"
 
 export function BasedHouseCard() {
   return (
-    <div class="flex flex-row max-sm:flex-col-reverse items-center bg-white w-full p-4 my-6 gap-8 max-sm:text-center">
+    <div class="flex flex-row max-sm:flex-col-reverse items-center bg-white w-full p-4 my-8 gap-8 max-sm:text-center">
       <div class="flex flex-col gap-2 justify-center">
         <h2 class="text-5xl font-bold flex items-center gap-2">
           <Users size="45px" />

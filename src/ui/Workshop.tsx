@@ -91,27 +91,6 @@ export function WorkshopListCard() {
     }
 
     setLatestDayIndex(targetIndex)
-
-    setTimeout(() => {
-      // Get the corresponding element
-      const targetDayElement = daysElements.at(latestDayIndex())
-
-      if (!targetDayElement) {
-        return
-      }
-
-      const overflowContainer = targetDayElement.closest(".overflow-hidden")
-      if (overflowContainer) {
-        const margin = targetDayElement.offsetHeight * 0.4
-        const targetPosition = targetDayElement.offsetTop
-          - overflowContainer.offsetTop - margin
-
-        overflowContainer.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        })
-      }
-    }, 100)
   })
 
   return (
@@ -178,7 +157,7 @@ export function WorkshopListCard() {
         class={`flex flex-col gap-6 px-20 mt-0 relative ${isExpanded() ? "pb-20 ":"overflow-hidden"}`}
         style={{
           "mask-image": !isExpanded()
-            ? "linear-gradient(to bottom, transparent, black 100px, black calc(100% - 160px), transparent)"
+            ? "linear-gradient(to bottom, black, black calc(100% - 160px), transparent)"
             : "none",
           height: isExpanded() ? "auto" : "1000px ",
         }}
@@ -327,20 +306,6 @@ export function WorkshopListCard() {
               class="cursor-pointer bg-[#1761ff]/90 hover:bg-[#1761ff] text-white py-3 px-6 font-semibold rounded-xl transition-colors shadow-[0_0_10px_rgba(23,97,255,0.5)]"
               onClick={() => {
                 setIsExpanded(true)
-
-                // Scroll to the latest day after expanding
-                setTimeout(() => {
-                  const targetDayElement = daysElements.at(latestDayIndex())
-
-                  if (!targetDayElement) {
-                    return
-                  }
-
-                  targetDayElement.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center",
-                  })
-                }, 20)
               }}
             >
               See all workshops

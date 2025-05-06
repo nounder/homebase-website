@@ -5,6 +5,7 @@ import { Header } from "../ui/Header";
 import { VideoGallery } from "../ui/VideoGallery";
 import { WorkshopListCard } from "../ui/Workshop";
 import { Footer } from "../ui/Footer";
+import { Map } from "../ui/Map";
 
 export default function Home() {
   onMount(() => {
@@ -22,7 +23,13 @@ export default function Home() {
       </div>
 
       <div
-        class={`flex flex-col mt-3 w-full max-w-[1140px] mx-auto z-10 mt-20 relative shadow-[0_0_45px_rgba(23,97,255,0.15)] gap-8 overflow-hidden rounded-2xl`}
+        class={`flex flex-col w-full max-w-[1140px] mx-auto z-10 mt-20`}
+      >
+       <Map />
+      </div>
+
+      <div
+        class={`flex flex-col mt-3 w-full max-w-[1140px] mx-auto z-10 mt-8 relative shadow-[0_0_45px_rgba(23,97,255,0.15)] gap-8 overflow-hidden rounded-2xl`}
       >
         <WorkshopListCard />
       </div>

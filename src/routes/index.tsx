@@ -17,7 +17,7 @@ export default function Home() {
       <Header />
 
       <div class="flex w-full absolute items-center justify-center z-[10000]">
-        <button class="text-white mb-3 cursor-pointer hover:scale-[1.05] transition-all duration-[150ms] py-3 px-6 bg-black rounded-full px-4" onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}>
+        <button class="text-white mb-3 select-none cursor-pointer hover:scale-[1.05] transition-all duration-[150ms] py-3 px-6 bg-black rounded-full px-4" onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}>
           Follow @homebasedotlove
         </button>
       </div>
@@ -29,7 +29,7 @@ export default function Home() {
       </div>
 
       <div
-        class={`flex flex-col mt-3 w-full max-w-[1140px] mx-auto z-10 mt-8 relative shadow-[0_0_45px_rgba(23,97,255,0.15)] gap-8 overflow-hidden rounded-2xl`}
+        class={`flex flex-col mt-3 w-full max-w-[1140px] mx-auto z-10 mt-8 relative gap-8`}
       >
         <WorkshopListCard />
       </div>

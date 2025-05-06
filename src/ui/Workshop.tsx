@@ -100,14 +100,10 @@ export function WorkshopListCard() {
         class="sticky flex justify-between top-0 px-5 z-20"
 
       >
-        <h2 class="flex-col px-10 flex pt-10 items-center w-full ">
+        <h2 class="flex-col flex pt-5 bg-white pb-5 items-start w-full ">
           <div class="flex gap-2 items-center">
-            <PencilRulerIcon size="40px" class="text-black" />
             <span class="text-5xl font-bold text-black">Workshops</span>
           </div>
-          <span class="text-gray-500/80 text-lg font-medium">
-            Learn about any topic, from anywhere.
-          </span>
         </h2>
         <div>
           {/* When locations are needed, add the location dropdown */}
@@ -140,7 +136,7 @@ export function WorkshopListCard() {
       </div>
 
       <div
-        class={`flex flex-col gap-6 px-20 mt-0 relative ${isExpanded() ? "pb-20 ":"overflow-hidden"}`}
+        class={`flex flex-col gap-6 px-20 mt-3 relative ${isExpanded() ? "pb-20 ":"overflow-hidden"}`}
         style={{
           "mask-image": !isExpanded()
             ? "linear-gradient(to bottom, black, black calc(100% - 160px), transparent)"
@@ -180,15 +176,13 @@ export function WorkshopListCard() {
               <div class="flex flex-col ml-18 gap-4 mt-4 pb-3">
                 <For each={day.events}>
                   {event => (
-                    <div onClick={()=>{
-                      window.open(event.luma_url ?? "")
-                    }} class="flex w-full transition-all duration-[150ms] hover:bg-[#1761ff]/10 p-3 rounded-xl border-2 border-gray-100 cursor-pointer hover:border-[#1761ff]/30">
+                    <div class="pl-3.5 flex w-full py-3 pr-3.5 rounded-xl border-2 border-gray-100 hover:border-[#1761ff]/30">
                       <div class="w-full">
                         <div class="flex flex-col  w-full gap-1 text-gray-500 text-sm">
                           <div class="flex flex-col ">
-                            <span class="text-2xl font-semibold">
+                            <a class="text-2xl w-fit font-semibold hover:underline" href={event.luma_url ?? ""} target="_blank">
                             {event.title}
-                            </span>
+                            </a>
                            
                             <div class="flex w-full ">
                             <ClockIcon size="16px" />

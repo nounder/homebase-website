@@ -11,13 +11,13 @@ export function Footer() {
           Follow us on X, we regularly post about our based house, workshops &
           events.
         </span>
-        <a href="https://x.com/homebasedotlove" target="_blank" class="outline-none mt-8 mb-10 bg-white px-5 py-2 font-medium rounded-full hover:scale-[1.05] text-[#1761ff] transition-all duration-[150ms] cursor-pointer">
+        <a href="https://x.com/homebasedotlove" target="_blank" class="outline-none select-none mt-8 mb-10 bg-white px-5 py-2 font-medium rounded-full hover:scale-[1.05] text-[#1761ff] transition-all duration-[150ms] cursor-pointer">
           Follow @homebasedotlove
         </a>
       </div>
       <img 
         src="/HomebaseWorld.webp" 
-        class="absolute left-1/2 transform opacity-[9%] -translate-x-1/2 translate-y-[55%] bottom-0 w-1/2 object-contain z-0" 
+        class="absolute left-1/2 select-none pointer-events-none transform opacity-[9%] -translate-x-1/2 translate-y-[55%] bottom-0 w-1/2 object-contain z-0" 
         alt="Homebase World"
       />
     </div>

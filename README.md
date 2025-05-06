@@ -46,29 +46,6 @@ bun install
 bun run dev
 ```
 
-## 🌐 Features
-
-### Interactive Map
-
-The homepage features an interactive map showing Homebase locations, embedded as an iframe from the Homebase map service.
-
-### Workshops
-
-Browse and register for upcoming workshops. Features include:
-
-- Automatic timezone detection
-- Calendar integration
-- Workshop host information
-- Registration via Luma
-
-### Based Houses
-
-Information about physical Homebase locations for builders and creators to gather, work, and learn together.
-
-### Video Gallery
-
-Browse recordings of past workshops and events, with direct links to YouTube videos.
-
 ## 📦 Deployment
 
 The project is configured to deploy to Fly.io:

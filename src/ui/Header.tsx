@@ -119,6 +119,7 @@ export function HeaderLogo() {
             text-anchor={letter.textAnchor}
             fill="white"
             style={`
+              user-select: none;
               --hf: ${letter.i};
               --nounder-float-y: 1%;
               animation: nounder-float ease-in-out infinite;

@@ -17,7 +17,7 @@ export default function Home() {
       <Header />
 
       <div class="flex w-full absolute items-center justify-center z-[10000]">
-        <button class="text-white mb-3 select-none cursor-pointer hover:scale-[1.05] transition-all duration-[150ms] py-3 px-6 bg-black rounded-full px-4" onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}>
+        <button class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-3 px-6 bg-black rounded-full px-4" onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}>
           Follow @homebasedotlove
         </button>
       </div>
@@ -46,7 +46,7 @@ export default function Home() {
         <VideoGallery />
       </div>
       <div
-        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-[1] relative gap-8`}
+        class={`flex flex-col pt-6 w-full max-w-full relative gap-8`}
       >
         <Footer />
       </div>

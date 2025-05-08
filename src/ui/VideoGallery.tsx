@@ -143,7 +143,7 @@ export function VideoGallery() {
                     href={selectedVideo()?.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    class="mt-2 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[#1761ff] hover:bg-blue-700"
+                    class="mt-2 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-xl transition-all duration-[150ms] text-white bg-[#1761ff] hover:bg-blue-700"
                   >
                     Open video externally
                   </a>

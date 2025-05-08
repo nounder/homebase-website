@@ -1,6 +1,5 @@
 import { createSignal } from "solid-js";
 import BasePaint414 from "../../public/BasedPaint414.png";
-import { Home, Users } from "lucide-solid";
 
 export function BasedHouseCard() {
   return (
@@ -18,7 +17,7 @@ export function BasedHouseCard() {
         <div>
           <a
             href="https://warpcast.com/rafi/0x14fd4e8e"
-            class="hover:opacity-70 font-semibold hover:px-5 py-2 transition-all duration-[150ms] rounded-lg hover:bg-[#1761ff]/10 text-[#1761ff] text-lg inline-flex items-center"
+            class="hover:opacity-70 font-semibold hover:px-5 py-2 transition-all duration-[150ms] rounded-xl hover:bg-[#1761ff]/10 text-[#1761ff] text-lg inline-flex items-center"
             target="_blank"
           >
             Learn more
@@ -46,7 +45,7 @@ export function BasedHouseBlueprint() {
     <div
       class="aspect-square bg-cover bg-center bg-no-repeat relative"
       style={{
-        "background-image": `url(/BasedPaint414.png)`,
+        "background-image": `url(/BasedPaint414.png?url)`,
         transform: `perspective(1000px) rotateY(${rotation().y}deg) rotateX(${
           rotation().x
         }deg)`,

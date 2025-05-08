@@ -108,7 +108,7 @@ export function VideoGallery() {
       {/* Video Modal */}
       <Show when={selectedVideo()}>
         <div 
-          class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 z-[1000000]"
+          class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
           onClick={(e) => {
             // Close when clicking the backdrop
             if (e.target === e.currentTarget) {

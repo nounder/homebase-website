@@ -18,7 +18,7 @@ export function Footer() {
           }}
         ></div>
 
-        <div class="relative z-[100] pt-[210px]">
+        <div class="relative pt-[210px]">
           <div class="w-full max-w-[960px] mx-auto flex flex-col text-center flex flex-col items-center">
             <span class="text-white text-5xl font-bold">Stay in the loop</span>
             <span class="text-white/50 text-md font-medium">

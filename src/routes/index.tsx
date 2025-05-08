@@ -16,7 +16,7 @@ export default function Home() {
     <main>
       <Header />
 
-      <div class="flex w-full absolute items-center justify-center z-[10000]">
+      <div class="flex w-full absolute items-center justify-center">
         <button class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-3 px-6 bg-black rounded-full px-4" onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}>
           Follow @homebasedotlove
         </button>

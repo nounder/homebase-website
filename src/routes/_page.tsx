@@ -1,4 +1,4 @@
-import { useEffect } from "preact/hooks"
+import { useEffect } from "preact"
 import { BasedHouseCard } from "../ui/BasedHouse"
 import { Footer } from "../ui/Footer"
 import { Header } from "../ui/Header"
@@ -8,22 +8,22 @@ import { WorkshopListCard } from "../ui/Workshop"
 import Events from "./Events.tsx"
 
 export default function() {
-  // useEffect(() => {
-  //   import("@farcaster/frame-sdk").then((mod) => mod.sdk.actions.ready());
-  // }, []);
+  useEffect(() => {
+    import("@farcaster/frame-sdk").then((mod) => mod.sdk.actions.ready())
+  }, [])
 
   return (
     <main>
       <Header />
-      <div class="flex w-full absolute items-center justify-center gap-x-3 mt-1.5">
+      <div class="flex w-full absolute items-center justify-center gap-x-3 mt-8 z-20">
         <button
-          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full px-4"
+          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full"
           onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}
         >
           Twitter/X
         </button>
         <button
-          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full px-4"
+          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full"
           onClick={() =>
             window.open(
               "https://github.com/nounder/homebase-website",
@@ -33,26 +33,20 @@ export default function() {
           Github
         </button>
         <button
-          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full px-4"
+          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full"
           onClick={() =>
             window.open("https://farcaster.xyz/homebase", "_blank")}
         >
           Farcaster
         </button>
       </div>
-      <div class={`flex flex-col w-full max-w-[1140px] mx-auto z-10 mt-20`}>
-        <Map />
-      </div>
+
       <div
         class={`flex flex-col mt-3 w-full max-w-[1140px] mx-auto z-10 mt-8 relative gap-8`}
       >
         <WorkshopListCard />
       </div>
-      <div
-        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
-      >
-        <Events />
-      </div>
+
       <div
         class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
       >
@@ -62,6 +56,9 @@ export default function() {
         class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
       >
         <VideoGallery />
+      </div>
+      <div class={`flex flex-col w-full max-w-[1140px] mx-auto mt-10`}>
+        <Map />
       </div>
       <div class={`flex flex-col pt-6 w-full max-w-full relative gap-8`}>
         <Footer />

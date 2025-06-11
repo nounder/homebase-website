@@ -3,14 +3,16 @@ import {
   HttpApp,
   HttpRouter,
   HttpServer,
+  HttpServerRequest,
   HttpServerResponse,
 } from "@effect/platform"
 import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
-import { Effect, Layer, pipe } from "effect"
+import { Effect, Layer, pipe, Schema } from "effect"
 import { BundleHttp, FileRouter } from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
 import * as HttpAppExtra from "./HttpAppExtra.ts"
+import { FetchCalendarEvents } from "./jobs/FetchCalendarData.ts"
 
 import IndexHtml from "./index.html" with { type: "file" }
 
@@ -24,6 +26,10 @@ export const App = HttpRouter.empty.pipe(
   HttpRouter.mountApp(
     BundlePath,
     BundleHttp.httpApp(),
+  ),
+  HttpRouter.get(
+    "/calendar",
+    await import("./routes/calendar/_server.ts").then(v => v.GET),
   ),
   HttpRouter.get(
     "/events.json",

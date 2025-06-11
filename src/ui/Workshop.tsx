@@ -1,6 +1,12 @@
-import { PencilRulerIcon } from "lucide-preact"
-import { useEffect, useState, useMemo, useRef } from "preact/hooks"
-import { createCalendarLinks } from "../calendar.ts"
+import { useEffect, useState } from "preact"
+import {
+  For,
+  Show,
+  useComputed,
+  useSignal,
+  useSignalEffect,
+} from "preact/signals"
+import { createCalendarLinks } from "../calendar"
 import Workshops from "../workshops.json" with { type: "json" }
 
 const formatDate = (date: Date | string) =>
@@ -11,22 +17,24 @@ const formatDate = (date: Date | string) =>
   })
 
 export function WorkshopListCard() {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [timezones, setTimezones] = useState<string[]>([])
-
-  const [selectedTimezone, setSelectedTimezone] = useState<string | null>(null)
+  const isExpanded = useSignal(false)
+  const showWorkshops = useComputed(() => !isExpanded.value)
+  const timezones = useSignal<string[]>([])
+  const selectedTimezone = useSignal<string | null>(null)
 
   // make sure it's called on the client side
-  useEffect(() => {
-    const timezones = Intl.supportedValuesOf("timeZone")
-    setTimezones(timezones)
+
+  useSignalEffect(() => {
+    const supportedTimezones = Intl.supportedValuesOf("timeZone")
+    timezones.value = supportedTimezones
+
     const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
-    setSelectedTimezone(currentTimezone)
-  }, [])
+    selectedTimezone.value = currentTimezone
+  })
 
-  const days = useMemo(() => {
-    const tz = selectedTimezone ?? "UTC"
+  const days = useComputed(() => {
+    const tz = selectedTimezone.value ?? "UTC"
 
     const events = Workshops.days.flatMap(v => {
       return v.events.map(v => {
@@ -53,15 +61,15 @@ export function WorkshopListCard() {
         date: v,
         events: dayEvents[v],
       }))
-  }, [selectedTimezone])
+  })
 
-  const [daysElements, setDaysElements] = useState<any[]>([])
-  
-  useEffect(() => {
-    setDaysElements(Array.from({ length: days.length }, () => null))
-  }, [days])
+  const daysElements = useSignal<any[]>([])
 
-  const [latestDayIndex, setLatestDayIndex] = useState(0)
+  useSignalEffect(() => {
+    daysElements.value = Array.from({ length: days.value.length }, () => null)
+  })
+
+  const latestDayIndex = useSignal(0)
 
   useEffect(() => {
     // Find today's date or the last day if all events are in the past
@@ -69,19 +77,19 @@ export function WorkshopListCard() {
 
     console.log({
       today,
-      days: days,
+      days: days.value,
     })
 
     let targetIndex = Math.max(
       -1,
-      days.findIndex(day => day.date >= today),
+      days.value.findIndex(day => day.date >= today),
     )
     if (targetIndex === -1) {
-      targetIndex = days.length - 1
+      targetIndex = days.value.length - 1
     }
 
-    setLatestDayIndex(targetIndex)
-  }, [days])
+    latestDayIndex.value = targetIndex
+  }, [])
 
   return (
     <>
@@ -95,233 +103,248 @@ export function WorkshopListCard() {
             </div>
           </h2>
           <div>
-            {/* When locations are needed, add the location dropdown */}
           </div>
-          {
-            /* <div
+          <div
             class="flex items-center gap-2 mt-2"
             style="
-            opacity: 0;
-            animation: fade-in 0.2s ease-in-out forwards;
-            animation-delay: 0.5s;
-            "
+          opacity: 0;
+          animation: fade-in 0.2s ease-in-out forwards;
+          animation-delay: 0.5s;
+          "
           >
             <span class="text-sm text-gray-600">
               Location:
             </span>
             <select
-              value={selectedTimezone ?? "UTC"}
+              value={selectedTimezone.value ?? "UTC"}
               class={`text-sm border border-gray-300 rounded px-2 py-1 appearance-none w-32`}
-              onChange={e => setSelectedTimezone(e.target.value)}
+              onChange={e => {
+                selectedTimezone.value = (e.target as HTMLSelectElement).value
+              }}
             >
-              {timezones.map(timezone => (
-                <option value={timezone}>
-                  {timezone.split("/").at(-1)!.replaceAll("_", " ")}
-                </option>
-              ))}
+              <For each={timezones}>
+                {timezone => (
+                  <option value={timezone}>
+                    {timezone.split("/").at(-1)!.replaceAll("_", " ")}
+                  </option>
+                )}
+              </For>
             </select>
-          </div> */
-          }
+          </div>
         </div>
 
         <div
           class={`flex flex-col gap-6 px-20 mt-3 relative ${
-            isExpanded ? "pb-20 " : "overflow-hidden"
+            isExpanded.value ? "pb-20 " : "overflow-hidden"
           }`}
           style={{
-            maskImage: !isExpanded
+            "mask-image": !isExpanded.value
               ? "linear-gradient(to bottom, black, black calc(100% - 160px), transparent)"
               : "none",
-            height: isExpanded ? "auto" : "1000px ",
+            height: isExpanded.value ? "auto" : "1000px ",
           }}
         >
-          {days.map((day, i) => (
-            <div key={i} ref={el => {
-              const newElements = [...daysElements]
-              newElements[i] = el
-              setDaysElements(newElements)
-            }} class="border-gray-200">
-              <div class="flex items-center gap-2">
-                <div class="w-12 h-12 bg-white rounded-lg mr-2 shadow-sm flex flex-col overflow-hidden mb-2">
-                  <div class="bg-red-500 text-white text-xs font-semibold py-0.5 text-center">
-                    {new Date(
-                      day
-                        .date,
-                    )
-                      .toLocaleDateString("en-US", {
-                        month: "short",
-                      })}
-                  </div>
-                  <div class="flex-1 flex items-center justify-center text-md font-bold">
-                    {new Date(
-                      day
-                        .date,
-                    )
-                      .getDate()}
-                  </div>
-                </div>
-
-                <div class="flex flex-col">
-                  <span class="text-lg font-semibold">
-                    {day
-                      .title}
-                  </span>
-
-                  <span class="text-md text-gray-500">
-                    {new Date(
-                      day
-                        .date,
-                    )
-                      .toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                      })}
-                  </span>
-                </div>
-              </div>
-
-              <div class="flex flex-col ml-18 gap-4 mt-4 pb-3">
-                {day.events.map((event, eventIndex) => (
-                  <div key={eventIndex} class="pl-3.5 flex w-full py-3 pr-3.5 rounded-xl border-2 border-gray-100 hover:border-[#1761ff]/30">
-                    <div class="w-full">
-                      <div class="flex flex-col  w-full gap-1 text-gray-500 text-sm">
-                        <div class="flex flex-col ">
-                          <a
-                            class="text-2xl w-fit font-semibold hover:underline"
-                            href={event
-                              .luma_url ?? ""}
-                            target="_blank"
-                          >
-                            {event
-                              .title}
-                          </a>
-
-                          <div class="flex w-full ">
-                            <ClockIcon size="16px" />
-                            <span class="mx-1">
-                              {new Date(
-                                event
-                                  .start,
-                              )
-                                .toLocaleTimeString(
-                                  [],
-                                  {
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                  },
-                                )}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div class="line-clamp-1">
-                          🗓️{"  "}
-                          <a
-                            title="Add to Apple / iCalendar"
-                            href={createCalendarLinks({
-                              title: event
-                                .title,
-                              start: new Date(
-                                event
-                                  .start,
-                              ),
-                              end: new Date(
-                                new Date(
-                                  event
-                                    .start,
-                                )
-                                  .getTime()
-                                  + 1.5 * 60 * 60 * 1000,
-                              ),
-                            })
-                              .ical}
-                            class="hover:underline"
-                          >
-                            iCalendar
-                          </a>
-                          {" • "}
-                          <a
-                            title="Add to Google Calendar"
-                            target="_blank"
-                            href={createCalendarLinks({
-                              title: event
-                                .title,
-                              start: new Date(event.start),
-                              end: new Date(
-                                new Date(event.start).getTime()
-                                  + 1.5 * 60 * 60 * 1000,
-                              ),
-                            })
-                              .google}
-                            class="hover:underline"
-                          >
-                            Google
-                          </a>
-                          {" • "}
-                          <a
-                            href={event.luma_url ?? ""}
-                            target="_blank"
-                            class="hover:underline"
-                          >
-                            Luma
-                          </a>
-                        </div>
-                      </div>
-
-                      <div>
-                        {event.description}
-                      </div>
-
-                      <div class="flex items-center gap-4 text-sm overflow-x-auto">
-                        {event.hosts.map((host, hostIndex) => (
-                          <span key={hostIndex} class="group whitespace-nowrap shrink-0 mt-2">
-                            {typeof host === "string" ? host : (
-                              <>
-                                {host.pfp_url && (
-                                  <img
-                                    src={host
-                                      .pfp_url}
-                                    alt={host
-                                      .name}
-                                    class="rounded-full object-cover aspect-square w-6 inline mr-2"
-                                  />
-                                )}
-                                <a
-                                  href={host
-                                    .profile_url ?? "#"}
-                                  class="inline group-hover:underline whitespace-nowrap"
-                                  target="_blank"
-                                >
-                                  {host
-                                    .name}
-                                </a>
-                              </>
-                            )}
-                          </span>
-                        ))}
-                      </div>
+          <For each={days}>
+            {(day, i) => (
+              <div
+                ref={el => daysElements.value[i] = el}
+                class="border-gray-200"
+              >
+                <div class="flex items-center gap-2">
+                  <div class="w-12 h-12 bg-white rounded-lg mr-2 shadow-sm flex flex-col overflow-hidden mb-2">
+                    <div class="bg-red-500 text-white text-xs font-semibold py-0.5 text-center">
+                      {new Date(
+                        day
+                          .date,
+                      )
+                        .toLocaleDateString("en-US", {
+                          month: "short",
+                        })}
+                    </div>
+                    <div class="flex-1 flex items-center justify-center text-md font-bold">
+                      {new Date(
+                        day
+                          .date,
+                      )
+                        .getDate()}
                     </div>
                   </div>
-                ))}
+
+                  <div class="flex flex-col">
+                    <span class="text-lg font-semibold">
+                      {day
+                        .title}
+                    </span>
+
+                    <span class="text-md text-gray-500">
+                      {new Date(
+                        day
+                          .date,
+                      )
+                        .toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                        })}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex flex-col ml-18 gap-4 mt-4 pb-3">
+                  <For
+                    each={day.events}
+                  >
+                    {event => (
+                      <div class="pl-3.5 flex w-full py-3 pr-3.5 rounded-xl border-2 border-gray-100 hover:border-[#1761ff]/30">
+                        <div class="w-full">
+                          <div class="flex flex-col  w-full gap-1 text-gray-500 text-sm">
+                            <div class="flex flex-col ">
+                              <a
+                                class="text-2xl w-fit font-semibold hover:underline"
+                                href={event.luma_url ?? ""}
+                                target="_blank"
+                              >
+                                {event.title}
+                              </a>
+
+                              <div class="flex w-full ">
+                                <ClockIcon size="16px" />
+                                <span class="mx-1">
+                                  {new Date(event.start)
+                                    .toLocaleTimeString(
+                                      [],
+                                      {
+                                        hour: "2-digit",
+                                        minute: "2-digit",
+                                      },
+                                    )}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div class="line-clamp-1">
+                              🗓️{"  "}
+                              <a
+                                title="Add to Apple / iCalendar"
+                                href={createCalendarLinks({
+                                  title: event
+                                    .title,
+                                  start: new Date(
+                                    event
+                                      .start,
+                                  ),
+                                  end: new Date(
+                                    new Date(
+                                      event
+                                        .start,
+                                    )
+                                      .getTime()
+                                      + 1.5 * 60 * 60 * 1000,
+                                  ),
+                                })
+                                  .ical}
+                                class="hover:underline"
+                              >
+                                iCalendar
+                              </a>
+                              {" • "}
+                              <a
+                                title="Add to Google Calendar"
+                                target="_blank"
+                                href={createCalendarLinks({
+                                  title: event
+                                    .title,
+                                  start: new Date(
+                                    event
+                                      .start,
+                                  ),
+                                  end: new Date(
+                                    new Date(
+                                      event
+                                        .start,
+                                    )
+                                      .getTime()
+                                      + 1.5 * 60 * 60 * 1000,
+                                  ),
+                                })
+                                  .google}
+                                class="hover:underline"
+                              >
+                                Google
+                              </a>
+                              {" • "}
+                              <a
+                                href={event
+                                  .luma_url ?? ""}
+                                target="_blank"
+                                class="hover:underline"
+                              >
+                                Luma
+                              </a>
+                            </div>
+                          </div>
+
+                          <div>
+                            {event
+                              .description}
+                          </div>
+
+                          <div class="flex items-center gap-4 text-sm overflow-x-auto">
+                            <For
+                              each={event
+                                .hosts}
+                            >
+                              {host => (
+                                <span class="group whitespace-nowrap shrink-0 mt-2">
+                                  {typeof host === "string" ? host : (
+                                    <>
+                                      <Show when={host.pfp_url}>
+                                        <img
+                                          src={host
+                                            .pfp_url}
+                                          alt={host
+                                            .name}
+                                          class="rounded-full object-cover aspect-square w-6 inline mr-2"
+                                        />
+                                      </Show>
+                                      <a
+                                        href={host
+                                          .profile_url ?? "#"}
+                                        class="inline group-hover:underline whitespace-nowrap"
+                                        target="_blank"
+                                      >
+                                        {host
+                                          .name}
+                                      </a>
+                                    </>
+                                  )}
+                                </span>
+                              )}
+                            </For>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </For>
+                </div>
               </div>
-            </div>
-          ))}
+            )}
+          </For>
         </div>
 
-        {!isExpanded && (
+        <Show when={showWorkshops}>
           <div class="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20">
             <div class="w-full max-w-[960px] flex justify-center">
               <button
                 class="cursor-pointer bg-[#1761ff]/90 hover:bg-[#1761ff] text-white py-3 px-6 font-semibold rounded-xl transition-colors shadow-[0_0_10px_rgba(23,97,255,0.5)]"
                 onClick={() => {
-                  setIsExpanded(true)
+                  isExpanded.value = true
                 }}
               >
                 See all workshops
               </button>
             </div>
           </div>
-        )}
+        </Show>
       </div>
     </>
   )

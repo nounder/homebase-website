@@ -13,7 +13,7 @@ export const SqlLive = Effect
     const fs = yield* FileSystem.FileSystem
     const dataPath = yield* pipe(
       Config.string("DATA_PATH"),
-      Config.withDefault("./.data"),
+      Config.withDefault("./data"),
       Config.map(v => NPath.resolve(process.cwd(), v)),
     )
     const dbPath = `${dataPath}/main.db`

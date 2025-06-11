@@ -1,4 +1,4 @@
-import { h, render } from "preact-uno";
-import { App } from "./app.tsx";
+import { render } from "preact"
+import { App } from "./App.tsx"
 
-render(<App />, document.getElementById("app")!);
+render(<App />, document.getElementById("app")!)

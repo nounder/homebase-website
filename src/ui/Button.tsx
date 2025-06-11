@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority"
-import { ComponentProps } from "preact-uno"
+import { ComponentProps } from "preact"
 import { cn } from "./utils.ts"
 
 const buttonVariants = cva(

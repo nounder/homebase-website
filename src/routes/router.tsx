@@ -1,8 +1,4 @@
-import {
-  lazy,
-  Route,
-  useRoute,
-} from "preact-uno"
+import { lazy, Route, useRoute } from "preact/iso"
 import { Pages } from "./_manifest.ts"
 
 function collectLayouts(page: (typeof Pages)[number]) {

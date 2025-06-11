@@ -15,7 +15,7 @@
         "effect-bundler": "nounder/effect-bundler#7e8dc7f",
         "ical.js": "^2.1.0",
         "lucide-preact": "^0.514.0",
-        "preact-uno": "nounder/preact-uno#1189f96",
+        "preact": "nounder/preact-uno#d747dca",
         "tw-animate-css": "^1.3.4",
         "ulid": "^3.0.1",
       },
@@ -274,9 +274,7 @@
 
     "picomatch": ["picomatch@2.3.1", "", {}, "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="],
 
-    "preact": ["preact@10.26.9", "", {}, "sha512-SSjF9vcnF27mJK1XyFMNJzFd5u3pQiATFqoaDy03XuN00u4ziveVVEGt5RKJrDR8MHE/wJo9Nnad56RLzS2RMA=="],
-
-    "preact-uno": ["preact-uno@github:nounder/preact-uno#1189f96", { "peerDependencies": { "typescript": "^5" } }, "nounder-preact-uno-1189f96"],
+    "preact": ["preact-uno@github:nounder/preact-uno#d747dca", { "peerDependencies": { "typescript": "^5" } }, "nounder-preact-uno-d747dca"],
 
     "pure-rand": ["pure-rand@6.1.0", "", {}, "sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA=="],
 

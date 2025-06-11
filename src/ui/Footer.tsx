@@ -1,9 +1,11 @@
 import { HeaderLogo } from "./Header.tsx"
+import { Socials } from "./Socials.tsx"
 
 export function Footer() {
   return (
-    <div class="bg-[#1761ff] h-[500px] w-full p-5 overflow-hidden">
-      <div class="relative overflow-visible">
+    <div class="bg-[#1761ff] min-h-[500px] w-full p-5 overflow-hidden relative">
+      <div class="relative">
+        {/* White curved top section */}
         <div
           style={{
             position: "absolute",
@@ -11,29 +13,26 @@ export function Footer() {
             top: "0",
             transform: "translate(-50%, -50%)",
             background: "#fff",
-            clipPath: "ellipse(max(40%, 700px) 50% at 50% 50%)",
-            width: "140%",
-            height: "200px",
+            clipPath: "ellipse(min(100vw, 1200px) 120px at 50% 50%)",
+            width: "200%",
+            height: "240px",
             zIndex: "1",
           }}
         >
         </div>
 
-        <div class="relative pt-[210px]">
-          <div class="w-full max-w-[960px] mx-auto flex flex-col text-center flex flex-col items-center">
-            <span class="text-white text-5xl font-bold">
+        {/* Content section with proper spacing */}
+        <div class="relative pt-40 md:pt-40 pb-4 md:pb-4">
+          <div class="w-full max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
+            <h2 class="text-white text-4xl md:text-5xl font-bold leading-tight">
               Stay in the loop
-            </span>
-            <span class="text-white/50 text-md font-medium">
+            </h2>
+            <p class="text-white/70 text-lg md:text-xl font-medium max-w-2xl">
               We regularly post about our based house, workshops & events.
-            </span>
-            <a
-              class="outline-none px-5 py-3 mt-5 bg-white text-blue-500 font-bold rounded-full cursor-pointer transition-all border-[#1761ff] border-2 hover:bg-blue-50"
-              href="https://x.com/homebasedotlove"
-              target="_blank "
-            >
-              Follow @homebasedotlove
-            </a>
+            </p>
+            <div class="pt-4 text-white">
+              <Socials />
+            </div>
           </div>
         </div>
       </div>

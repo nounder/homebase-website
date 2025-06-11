@@ -1,5 +1,5 @@
 import { Loader2, VideoIcon, X } from "lucide-preact"
-import { useState } from "preact-uno"
+import { useState } from "preact"
 import Videos from "../videos.json" with { type: "json" }
 
 interface Video {

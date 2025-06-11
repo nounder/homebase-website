@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact-uno"
+import { useEffect, useState } from "preact"
 
 interface Event {
   id: string

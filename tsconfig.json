@@ -23,10 +23,10 @@
     "noImplicitAny": false,
 
     "paths": {
-      "react": ["./node_modules/preact-uno/compat"],
-      "react/jsx-runtime": ["./node_modules/preact-uno/jsx-runtime"],
-      "react-dom": ["./node_modules/preact-uno/compat"],
-      "react-dom/*": ["./node_modules/preact-uno/compat/*"]
+      "react": ["./node_modules/preact-uno/packages/preact/compat"],
+      "react/jsx-runtime": ["./node_modules/preact-uno/packages/preact/jsx-runtime"],
+      "react-dom": ["./node_modules/preact-uno/packages/preact/compat"],
+      "react-dom/*": ["./node_modules/preact-uno/packages/preact/compat/*"]
     }
   }
 }

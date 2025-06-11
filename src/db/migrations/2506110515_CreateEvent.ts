@@ -8,7 +8,7 @@ export default Effect.gen(function*() {
 create table "Event" (
   "id" text primary key,
   "title" text not null,
-  "description" text not null,
+  "description" text,
   "link" text,
   "start" text not null,
   "end" text not null

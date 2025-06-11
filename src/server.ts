@@ -1,14 +1,16 @@
 import {
   FetchHttpClient,
+  HttpApp,
   HttpRouter,
   HttpServer,
   HttpServerResponse,
 } from "@effect/platform"
 import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
 import { Effect, Layer, pipe } from "effect"
-import { BundleHttp, FileRouter, HttpAppExtra } from "effect-bundler"
+import { BundleHttp, FileRouter } from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
+import * as HttpAppExtra from "./HttpAppExtra.ts"
 
 import IndexHtml from "./index.html" with { type: "file" }
 
@@ -24,9 +26,18 @@ export const App = HttpRouter.empty.pipe(
     BundleHttp.httpApp(),
   ),
   HttpRouter.get(
+    "/events.json",
+    await import("./routes/events/_server.ts").then(v => v.GET),
+  ),
+  HttpRouter.post(
+    "/events.json",
+    await import("./routes/events/_server.ts").then(v => v.POST),
+  ),
+  HttpRouter.get(
     "/hello",
     HttpServerResponse.text("Hello World!"),
   ),
+  HttpAppExtra.withErrorHandled,
 )
 
 const ClientBundle = BunBundle
@@ -42,9 +53,7 @@ const ClientBundle = BunBundle
 
 export const layerServer = () =>
   pipe(
-    HttpServer.serve(App.pipe(
-      Effect.catchAll(HttpAppExtra.renderError),
-    )),
+    HttpServer.serve(App),
     HttpServer.withLogAddress,
     Layer.provide([
       FetchHttpClient.layer,

@@ -1,13 +1,5 @@
-import {
-  SqlClient,
-  SqlError,
-  SqlResolver,
-  SqlSchema,
-} from "@effect/sql"
-import {
-  Effect,
-  Schema,
-} from "effect"
+import { SqlClient, SqlError, SqlResolver, SqlSchema } from "@effect/sql"
+import { Effect, Schema } from "effect"
 
 export function sqlSchema<
   II,

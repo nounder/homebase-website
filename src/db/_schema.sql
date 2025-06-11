@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS "_Migration" (
 CREATE TABLE IF NOT EXISTS "Event" (
   "id" text primary key,
   "title" text not null,
-  "description" text not null,
+  "description" text,
   "link" text,
   "start" text not null,
   "end" text not null
 );
 
-INSERT INTO _Migration VALUES(2506110515,'2025-06-11 06:07:11','CreateEvent');
+INSERT INTO _Migration VALUES(2506110515,'2025-06-11 18:03:33','CreateEvent');

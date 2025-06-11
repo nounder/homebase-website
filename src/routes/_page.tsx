@@ -3,6 +3,7 @@ import { BasedHouseCard } from "../ui/BasedHouse"
 import { Footer } from "../ui/Footer"
 import { Header } from "../ui/Header"
 import { Map } from "../ui/Map"
+import { Socials } from "../ui/Socials"
 import { VideoGallery } from "../ui/VideoGallery"
 import { WorkshopListCard } from "../ui/Workshop"
 import Events from "./Events.tsx"
@@ -15,30 +16,8 @@ export default function() {
   return (
     <main>
       <Header />
-      <div class="flex w-full absolute items-center justify-center gap-x-3 mt-8 z-20">
-        <button
-          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full"
-          onClick={() => window.open("https://x.com/homebasedotlove", "_blank")}
-        >
-          Twitter/X
-        </button>
-        <button
-          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full"
-          onClick={() =>
-            window.open(
-              "https://github.com/nounder/homebase-website",
-              "_blank",
-            )}
-        >
-          Github
-        </button>
-        <button
-          class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full"
-          onClick={() =>
-            window.open("https://farcaster.xyz/homebase", "_blank")}
-        >
-          Farcaster
-        </button>
+      <div class="flex w-full absolute items-center justify-center gap-x-3 mt-8 z-20 text-black">
+        <Socials />
       </div>
 
       <div

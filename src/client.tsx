@@ -1,10 +1,4 @@
-import {
-  h,
-  render,
-} from "preact-uno"
-import { App } from "./App.tsx"
+import { h, render } from "preact-uno";
+import { App } from "./app.tsx";
 
-render(
-  <App />,
-  document.getElementById("app")!,
-)
+render(<App />, document.getElementById("app")!);

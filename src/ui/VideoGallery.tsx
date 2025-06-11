@@ -1,5 +1,5 @@
 import { Loader2, VideoIcon, X } from "lucide-preact"
-import { useState } from "react"
+import { useState } from "preact-uno"
 import Videos from "../videos.json" with { type: "json" }
 
 interface Video {
@@ -41,11 +41,11 @@ export function VideoGallery() {
   }
 
   return (
-    <div className="relative w-full">
-      <div className="flex justify-between top-0  z-20">
-        <h2 className="flex-col flex py-5 px-5 bg-white items-start w-full">
-          <div className="flex items-center">
-            <span className="text-5xl font-bold text-black">
+    <div class="relative w-full">
+      <div class="flex justify-between top-0  z-20">
+        <h2 class="flex-col flex py-5 px-5 bg-white items-start w-full">
+          <div class="flex items-center">
+            <span class="text-5xl font-bold text-black">
               Videos
             </span>
           </div>
@@ -53,7 +53,7 @@ export function VideoGallery() {
       </div>
 
       <div
-        className={`flex flex-col  px-5 py-3 relative ${
+        class={`flex flex-col  px-5 py-3 relative ${
           isExpanded ? "pb-20" : "overflow-hidden"
         }`}
         style={{
@@ -63,25 +63,25 @@ export function VideoGallery() {
           height: isExpanded ? "auto" : "1000px",
         }}
       >
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
+        <div class="grid gap-4 grid-cols-2 md:grid-cols-3">
           {(Videos as Video[]).map((video, index) => (
-            <div key={index} className="relative select-none">
+            <div key={index} class="relative select-none">
               <div
                 onClick={() =>
                   openVideoModal(video)}
-                className="block h-full group cursor-pointer"
+                class="block h-full group cursor-pointer"
               >
-                <div className="group-hover:scale-[1.03] group-hover:rotate-1 transition-all duration-200 h-full flex flex-col">
+                <div class="group-hover:scale-[1.03] group-hover:rotate-1 transition-all duration-200 h-full flex flex-col">
                   <img
                     loading="lazy"
                     src={video
                       .imageUrl}
                     alt={video
                       .title}
-                    className="w-full aspect-video pointer-events-none group-hover:shadow-3xl transition-all duration-[150ms] object-cover rounded-xl shadow-md"
+                    class="w-full aspect-video pointer-events-none group-hover:shadow-3xl transition-all duration-[150ms] object-cover rounded-xl shadow-md"
                   />
-                  <div className="bg-white flex-grow">
-                    <h3 className="line-clamp-2 mt-2 text-md font-bold">
+                  <div class="bg-white flex-grow">
+                    <h3 class="line-clamp-2 mt-2 text-md font-bold">
                       {video
                         .title}
                     </h3>
@@ -94,11 +94,11 @@ export function VideoGallery() {
       </div>
 
       {!isExpanded && (
-        <div className="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20 mt-3">
-          <div className="w-full max-w-[960px] flex justify-center">
-            <div className="relative">
+        <div class="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20 mt-3">
+          <div class="w-full max-w-[960px] flex justify-center">
+            <div class="relative">
               <button
-                className="relative z-10 cursor-pointer bg-white text-blue-500 font-bold py-3 px-6 rounded-xl transition-all border-[#1761ff] border-2 hover:bg-blue-50"
+                class="relative z-10 cursor-pointer bg-white text-blue-500 font-bold py-3 px-6 rounded-xl transition-all border-[#1761ff] border-2 hover:bg-blue-50"
                 onClick={() => setIsExpanded(true)}
               >
                 See all videos
@@ -111,7 +111,7 @@ export function VideoGallery() {
       {/* Video Modal */}
       {selectedVideo && (
         <div
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
           onClick={(e) => {
             // Close when clicking the backdrop
             if (e.target === e.currentTarget) {
@@ -120,34 +120,34 @@ export function VideoGallery() {
           }}
         >
           <div
-            className="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] flex flex-col shadow-2xl"
+            class="bg-white rounded-2xl w-full max-w-5xl max-h-[90vh] flex flex-col shadow-2xl"
             style={{
               boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
             }}
           >
-            <div className="flex justify-between items-center p-5">
-              <h3 className="font-bold text-2xl text-blue-500 truncate pr-4">
+            <div class="flex justify-between items-center p-5">
+              <h3 class="font-bold text-2xl text-blue-500 truncate pr-4">
                 {selectedVideo?.title}
               </h3>
               <button
                 onClick={closeVideoModal}
-                className="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100"
+                class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-gray-100"
                 aria-label="Close modal"
               >
                 <X size={24} />
               </button>
             </div>
-            <div className="p-0 flex-grow overflow-hidden relative">
+            <div class="p-0 flex-grow overflow-hidden relative rounded-b-xl">
               {getYoutubeEmbedUrl(selectedVideo?.url || "")
                 ? (
-                  <div className="aspect-video w-full relative">
+                  <div class="aspect-video w-full relative">
                     {/* Loading indicator */}
                     {isVideoLoading && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-b-2xl">
-                        <div className="flex flex-col items-center">
+                      <div class="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-b-2xl">
+                        <div class="flex flex-col items-center">
                           <Loader2
                             size={36}
-                            className="text-[#1761ff] mb-2 animate-spin"
+                            class="text-[#1761ff] mb-2 animate-spin"
                           />
                         </div>
                       </div>
@@ -157,7 +157,7 @@ export function VideoGallery() {
                       src={getYoutubeEmbedUrl(selectedVideo?.url || "")
                         || undefined}
                       title={selectedVideo?.title}
-                      className="w-full h-full rounded-b-2xl select-none"
+                      class="w-full h-full select-none"
                       style={{ border: "none" }}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen={true}
@@ -167,16 +167,16 @@ export function VideoGallery() {
                   </div>
                 )
                 : (
-                  <div className="flex flex-col items-center justify-center p-12 text-center space-y-4 h-full">
-                    <VideoIcon size={48} className="text-gray-400 mb-2" />
-                    <p className="text-gray-600 text-lg">
+                  <div class="flex flex-col items-center justify-center p-12 text-center space-y-4 h-full">
+                    <VideoIcon size={48} class="text-gray-400 mb-2" />
+                    <p class="text-gray-600 text-lg">
                       This content can't be embedded.
                     </p>
                     <a
                       href={selectedVideo?.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-xl transition-all duration-[150ms] text-white bg-[#1761ff] hover:bg-blue-700"
+                      class="mt-2 mb-3 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-xl transition-all duration-[150ms] text-white bg-[#1761ff] hover:bg-blue-700"
                     >
                       Open video externally
                     </a>

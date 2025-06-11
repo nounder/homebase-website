@@ -1,5 +1,5 @@
-import { useState } from "preact/hooks"
-import BasePaint414 from "../../assets/BasedPaint414.png"
+import { useState } from "preact-uno";
+import BasePaint414 from "../../assets/BasedPaint414.png";
 
 export function BasedHouseCard() {
   return (
@@ -32,67 +32,89 @@ export function BasedHouseCard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function BasedHouseBlueprint() {
   const [rotation, setRotation] = useState({
     x: 30,
     y: -20,
-  })
+  });
+
+  console.log("BasePaint414 import:", BasePaint414);
+  console.log("BasePaint414 type:", typeof BasePaint414);
 
   return (
     <div
-      class="aspect-square bg-cover bg-center bg-no-repeat relative"
+      class="aspect-square relative"
       style={{
-        "background-image": `url(/BasedPaint414.png?url)`,
-        transform:
-          `perspective(1000px) rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)`,
-        "transform-style": "preserve-3d",
-        "box-shadow": "8px 8px 16px rgba(0, 0, 0, 0.2)",
+        transform: `perspective(1000px) rotateY(${rotation.y}deg) rotateX(${rotation.x}deg)`,
+        transformStyle: "preserve-3d",
+        boxShadow: "8px 8px 16px rgba(0, 0, 0, 0.2)",
         transition: "transform 0.3s ease",
       }}
       onMouseMove={(e) => {
-        const el = e.currentTarget
-        const rect = el.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        const centerX = rect.width / 2
-        const centerY = rect.height / 2
-        const rotateY = (x - centerX) / 20
-        const rotateX = (centerY - y) / 20
+        const el = e.currentTarget;
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateY = (x - centerX) / 20;
+        const rotateX = (centerY - y) / 20;
 
         setRotation({
           x: rotateX,
           y: rotateY,
-        })
+        });
       }}
       onMouseLeave={() => {
         setRotation({
           x: 40,
           y: -20,
-        })
+        });
       }}
     >
-      <div
-        class="absolute inset-0 -z-10"
-        style={`
-            background-image: url(${BasePaint414});
-            transform: translateZ(-20px) scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-          `}
-      >
-      </div>
+      {/* Main image */}
+      <img
+        src={BasePaint414}
+        alt="BasedPaint #414"
+        class="w-full h-full object-cover"
+        onError={(e) => {
+          console.error("Image failed to load:", BasePaint414);
+          console.error("Error event:", e);
+        }}
+        onLoad={() => {
+          console.log("Image loaded successfully:", BasePaint414);
+        }}
+      />
+
+      {/* Shadow layer */}
+      <img
+        src={BasePaint414}
+        alt=""
+        class="absolute inset-0 w-full h-full object-cover -z-10"
+        style={{
+          transform: "translateZ(-20px) scale(1.05)",
+          boxShadow: "0 0 20px rgba(0, 0, 0, 0.4)",
+        }}
+      />
+
+      {/* 3D side faces */}
       <div
         class="absolute -right-2 -bottom-2 top-2 w-8 bg-gray-300 -z-20"
-        style="transform: rotateY(-90deg) translateX(-4px); transform-origin: right;"
-      >
-      </div>
+        style={{
+          transform: "rotateY(-90deg) translateX(-4px)",
+          transformOrigin: "right",
+        }}
+      ></div>
       <div
         class="absolute -bottom-2 -left-2 right-2 h-8 bg-gray-400 -z-20"
-        style="transform: rotateX(90deg) translateY(-4px); transform-origin: bottom;"
-      >
-      </div>
+        style={{
+          transform: "rotateX(90deg) translateY(-4px)",
+          transformOrigin: "bottom",
+        }}
+      ></div>
     </div>
-  )
+  );
 }

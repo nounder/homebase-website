@@ -36,16 +36,18 @@ function House() {
         />
       </g>
     </svg>
-  )
+  );
 }
 
 export function Header() {
   return (
-    <div style="
+    <div
+      style="
           background: #1761ff;
           margin-top: -80px;
           transform: translateY(80px);
-        ">
+        "
+    >
       <div class="relative overflow-hidden">
         <div class="w-full max-w-[960px] mx-auto text-center flex flex-col items-center">
           <div class="mt-8 w-24">
@@ -62,7 +64,8 @@ export function Header() {
         </div>
 
         <div style="height: 100px">
-          <div style="
+          <div
+            style="
               z-index: -1;
               position: absolute;
               left: 50%;
@@ -72,35 +75,34 @@ export function Header() {
               clip-path: ellipse(max(40%, 700px) 50% at 50% 50%);
               width: 140%;
               height: 200px;
-            ">
-          </div>
+            "
+          ></div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function HeaderLogo() {
   const width = 425,
     height = 80,
     startY = 60,
-    controlY = 40
+    controlY = 40;
   const curve = {
     start: { x: 6, y: startY },
     control: { x: width / 2, y: controlY },
     end: { x: width - 6, y: startY },
-  }
-  const path =
-    `M${curve.start.x},${curve.start.y} Q${curve.control.x},${curve.control.y} ${curve.end.x},${curve.end.y}`
-  const text = "HOMEBASE"
-  const totalChars = text.length
-  const spacing = 100 / totalChars // Distribute evenly across 100% of the path
+  };
+  const path = `M${curve.start.x},${curve.start.y} Q${curve.control.x},${curve.control.y} ${curve.end.x},${curve.end.y}`;
+  const text = "HOMEBASE";
+  const totalChars = text.length;
+  const spacing = 100 / totalChars; // Distribute evenly across 100% of the path
   const letters = text.split("").map((char, i) => ({
     i,
     char,
     offset: `${(i + 0.5) * spacing}%`,
     textAnchor: "middle" as const,
-  }))
+  }));
 
   return (
     <svg
@@ -133,5 +135,5 @@ export function HeaderLogo() {
         ))}
       </g>
     </svg>
-  )
+  );
 }

@@ -11,10 +11,10 @@ export function Footer() {
             top: "0",
             transform: "translate(-50%, -50%)",
             background: "#fff",
-            "clip-path": "ellipse(max(40%, 700px) 50% at 50% 50%)",
+            clipPath: "ellipse(max(40%, 700px) 50% at 50% 50%)",
             width: "140%",
             height: "200px",
-            "z-index": "1",
+            zIndex: "1",
           }}
         >
         </div>

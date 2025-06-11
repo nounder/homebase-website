@@ -1,14 +1,11 @@
-import BasedPaint from "../../assets/BasedPaint414.png"
-import { HouseLogo } from "../ui/HouseLogo.tsx"
-
-export default function(props) {
+export default function Layout(props) {
   return (
     <div>
-      <h1>
+      {/* <h1>
         <a href="/">
           Home
         </a>
-      </h1>
+      </h1> */}
 
       <div>
         {props.children}

@@ -24,7 +24,6 @@
     "effect": "^3.16.5",
     "effect-bundler": "nounder/effect-bundler#7e8dc7f",
     "preact-uno": "nounder/preact-uno#1189f96",
-    "tailwind-merge": "^3.3.1",
     "tw-animate-css": "^1.3.4"
   }
 }

@@ -2,7 +2,7 @@ export default function(props) {
   return (
     <div>
       <h1>
-        Root layout
+        About layout
       </h1>
 
       <div>

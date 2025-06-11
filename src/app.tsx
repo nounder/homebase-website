@@ -1,20 +1,21 @@
-import { MetaProvider, Title } from "@solidjs/meta"
-import { Router } from "@solidjs/router"
-import { FileRoutes } from "@solidjs/start/router"
-import { Suspense } from "solid-js"
-import "./app.css"
+import "effect-bundler/client"
+import "./client.css"
 
-export default function App() {
+import {
+  ErrorBoundary,
+  LocationProvider,
+  Router,
+} from "preact-uno"
+import { RouteComponents } from "./routes/router.tsx"
+
+export function App() {
   return (
-    <Router
-      root={props => (
-        <MetaProvider>
-          <Title>Homebase</Title>
-          <Suspense>{props.children}</Suspense>
-        </MetaProvider>
-      )}
-    >
-      <FileRoutes />
-    </Router>
+    <LocationProvider>
+      <ErrorBoundary>
+        <Router>
+          {RouteComponents}
+        </Router>
+      </ErrorBoundary>
+    </LocationProvider>
   )
 }

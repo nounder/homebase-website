@@ -1,12 +1,13 @@
-import { useEffect } from "preact/hooks";
-import { BasedHouseCard } from "../ui/BasedHouse";
-import { Footer } from "../ui/Footer";
-import { Header } from "../ui/Header";
-import { Map } from "../ui/Map";
-import { VideoGallery } from "../ui/VideoGallery";
-import { WorkshopListCard } from "../ui/Workshop";
+import { useEffect } from "preact/hooks"
+import { BasedHouseCard } from "../ui/BasedHouse"
+import { Footer } from "../ui/Footer"
+import { Header } from "../ui/Header"
+import { Map } from "../ui/Map"
+import { VideoGallery } from "../ui/VideoGallery"
+import { WorkshopListCard } from "../ui/Workshop"
+import Events from "./Events.tsx"
 
-export default function () {
+export default function() {
   // useEffect(() => {
   //   import("@farcaster/frame-sdk").then((mod) => mod.sdk.actions.ready());
   // }, []);
@@ -24,16 +25,17 @@ export default function () {
         <button
           class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full px-4"
           onClick={() =>
-            window.open("https://github.com/nounder/homebase-website", "_blank")
-          }
+            window.open(
+              "https://github.com/nounder/homebase-website",
+              "_blank",
+            )}
         >
           Github
         </button>
         <button
           class="text-white my-1.5 select-none font-medium border-black/20 border-2 cursor-pointer hover:bg-black/80 py-1.5 px-5 bg-black rounded-full px-4"
           onClick={() =>
-            window.open("https://farcaster.xyz/homebase", "_blank")
-          }
+            window.open("https://farcaster.xyz/homebase", "_blank")}
         >
           Farcaster
         </button>
@@ -49,6 +51,11 @@ export default function () {
       <div
         class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
       >
+        <Events />
+      </div>
+      <div
+        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
+      >
         <BasedHouseCard />
       </div>
       <div
@@ -60,5 +67,5 @@ export default function () {
         <Footer />
       </div>
     </main>
-  );
+  )
 }

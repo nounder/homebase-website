@@ -45,7 +45,7 @@ export function VideoGallery() {
       <div class="flex justify-between top-0  z-20">
         <h2 class="flex-col flex py-5 px-5 bg-white items-start w-full">
           <div class="flex items-center">
-            <span class="text-5xl font-bold text-black">
+            <span class="text-4xl font-bold text-black">
               Videos
             </span>
           </div>
@@ -98,7 +98,7 @@ export function VideoGallery() {
           <div class="w-full max-w-[960px] flex justify-center">
             <div class="relative">
               <button
-                class="relative z-10 cursor-pointer bg-white text-blue-500 font-bold py-3 px-6 rounded-xl transition-all border-[#1761ff] border-2 hover:bg-blue-50"
+                class="relative z-10 btn btn"
                 onClick={() => setIsExpanded(true)}
               >
                 See all videos

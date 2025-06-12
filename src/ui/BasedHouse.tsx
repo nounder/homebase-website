@@ -3,32 +3,29 @@ import BasePaint414 from "../../assets/BasedPaint414.png"
 
 export function BasedHouseCard() {
   return (
-    <div class="flex flex-row max-sm:flex-col-reverse items-center bg-white w-full p-4 my-8 gap-8 max-sm:text-center">
-      <div class="flex flex-col gap-2 justify-center">
-        <h2 class="text-5xl font-bold flex items-center gap-2">
-          {/* <Users size="45px" /> */}
-          Based houses
-        </h2>
-        <div class="text-xl text-gray-600 w-[700px]">
-          Physical spaces for builders and creators to gather, work, and learn
-          together.
+    <div class="hero">
+      <div class="hero-content flex-col lg:flex-row-reverse">
+        <div class="max-w-xs">
+          <BasedHouseBlueprint />
+          <div class="text-gray-600 text-center mt-8 z-[10000]">
+            BasedPaint #414 by creamy.eth
+          </div>
         </div>
-
         <div>
+          <h1 class="text-4xl font-bold">
+            Based House
+          </h1>
+          <p class="py-6">
+            Physical space for builders and creators to gather, work, and learn
+            together.
+          </p>
           <a
             href="https://warpcast.com/rafi/0x14fd4e8e"
-            class="hover:opacity-70 font-semibold py-2 transition-all duration-[150ms] rounded-xl hover:underline text-[#1761ff] text-lg inline-flex items-center"
+            class="btn"
             target="_blank"
           >
             Learn more
           </a>
-        </div>
-      </div>
-
-      <div class="flex-grow aspect-square max-sm:w-[50vw] md:w-[50%]">
-        <BasedHouseBlueprint />
-        <div class="text-gray-600 text-center mt-8 z-[10000]">
-          BasedPaint #414 by creamy.eth
         </div>
       </div>
     </div>
@@ -40,9 +37,6 @@ export function BasedHouseBlueprint() {
     x: 30,
     y: -20,
   })
-
-  console.log("BasePaint414 import:", BasePaint414)
-  console.log("BasePaint414 type:", typeof BasePaint414)
 
   return (
     <div

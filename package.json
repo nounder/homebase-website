@@ -21,7 +21,7 @@
     "@effect/sql-sqlite-bun": "^0.38.10",
     "@farcaster/frame-sdk": "^0.0.63",
     "@tailwindcss/node": "^4.1.8",
-    "class-variance-authority": "^0.7.1",
+    "daisyui": "^5.0.43",
     "effect": "^3.16.5",
     "effect-bundler": "nounder/effect-bundler#7e8dc7f",
     "ical.js": "^2.1.0",

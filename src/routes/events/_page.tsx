@@ -1,18 +1,17 @@
-import { Button } from "../../ui/Button.tsx"
-
 export default function() {
   return (
     <div>
       <h1>
         Events
       </h1>
-      <Button
+      <button
+        class="btn"
         onClick={() => {
           console.log("clicked")
         }}
       >
         Add event
-      </Button>
+      </button>
     </div>
   )
 }

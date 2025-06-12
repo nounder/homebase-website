@@ -16,18 +16,15 @@ export default function() {
   return (
     <main>
       <Header />
-      <div class="flex w-full absolute items-center justify-center gap-x-3 mt-8 z-20 text-black">
-        <Socials />
-      </div>
 
       <div
-        class={`flex flex-col mt-3 w-full max-w-[1140px] mx-auto z-10 mt-8 relative gap-8`}
+        class={`flex flex-col mt-16 w-full max-w-[840px] mx-auto z-10 relative gap-8`}
       >
         <WorkshopListCard />
       </div>
 
       <div
-        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
+        class={`flex flex-col pt-6 w-full max-w-[960px] mx-auto z-10 relative gap-8`}
       >
         <BasedHouseCard />
       </div>

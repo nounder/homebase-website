@@ -27,6 +27,12 @@
       "react/jsx-runtime": ["./node_modules/preact-uno/packages/preact/jsx-runtime"],
       "react-dom": ["./node_modules/preact-uno/packages/preact/compat"],
       "react-dom/*": ["./node_modules/preact-uno/packages/preact/compat/*"]
-    }
+    },
+
+    "plugins": [
+      {
+        "name": "@effect/language-service"
+      }
+    ]
   }
 }

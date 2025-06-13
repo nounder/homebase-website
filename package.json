@@ -11,19 +11,20 @@
     "dev": "bun --watch src/server.ts"
   },
   "devDependencies": {
+    "@effect/language-service": "^0.20.1",
     "@types/bun": "^1.2.15",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@effect/platform": "^0.84.9",
-    "@effect/platform-bun": "^0.69.14",
+    "@effect/platform": "^0.84.11",
+    "@effect/platform-bun": "^0.69.16",
     "@effect/sql": "^0.37.10",
     "@effect/sql-sqlite-bun": "^0.38.10",
     "@farcaster/frame-sdk": "^0.0.63",
     "@tailwindcss/node": "^4.1.8",
     "daisyui": "^5.0.43",
-    "effect": "^3.16.5",
-    "effect-bundler": "nounder/effect-bundler#7e8dc7f",
+    "effect": "^3.16.7",
+    "effect-bundler": "file:../effect-bundler",
     "ical.js": "^2.1.0",
     "lucide-preact": "^0.514.0",
     "preact": "nounder/preact-uno#d747dca",

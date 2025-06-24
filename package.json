@@ -24,7 +24,7 @@
     "@tailwindcss/node": "^4.1.8",
     "daisyui": "^5.0.43",
     "effect": "^3.16.7",
-    "effect-bundler": "file:../effect-bundler",
+    "effect-bundler": "nounder/effect-bundler",
     "ical.js": "^2.1.0",
     "lucide-preact": "^0.514.0",
     "preact": "nounder/preact-uno#d747dca",

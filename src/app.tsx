@@ -1,4 +1,3 @@
-import "effect-bundler/client"
 import "./client.css"
 
 import { ErrorBoundary, LocationProvider, Router } from "preact/iso"

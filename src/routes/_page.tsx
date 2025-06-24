@@ -33,9 +33,6 @@ export default function() {
       >
         <VideoGallery />
       </div>
-      <div class={`flex flex-col w-full max-w-[1140px] mx-auto mt-10`}>
-        <Map />
-      </div>
       <div class={`flex flex-col pt-6 w-full max-w-full relative gap-8`}>
         <Footer />
       </div>

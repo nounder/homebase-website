@@ -1,4 +1,4 @@
 {
-    "typescript.preferences.importModuleSpecifierEnding": "js",
-    "workbench.colorTheme": "Tomorrow Night Blue"
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "workbench.colorTheme": "Tomorrow Night Blue"
 }

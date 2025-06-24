@@ -1,3 +1,5 @@
+import "effect-bundler/client"
+
 import { render } from "preact"
 import { App } from "./App.tsx"
 

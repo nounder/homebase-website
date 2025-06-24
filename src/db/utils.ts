@@ -1,10 +1,4 @@
-import {
-  Effect,
-  ParseResult,
-  pipe,
-  Record,
-  Schema,
-} from "effect"
+import { Effect, ParseResult, pipe, Record, Schema } from "effect"
 
 export function withGeneratedId<
   Fields extends {},

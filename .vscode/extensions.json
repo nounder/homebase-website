@@ -1,6 +1,6 @@
 {
-    "recommendations": [
-        "dprint.dprint",
-        "bradlc.vscode-tailwindcss"
-    ]
+  "recommendations": [
+    "dprint.dprint",
+    "bradlc.vscode-tailwindcss"
+  ]
 }

@@ -1,8 +1,13 @@
-FROM oven/bun:1.2-alpine AS base
+FROM oven/bun:1-alpine AS base
+
 WORKDIR /usr/src/app
 
-COPY .output .
+COPY package.json bun.lock .
 
-USER bun
-EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "server/index.mjs" ]
+RUN bun install --frozen-lockfile
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["bun", "start"]

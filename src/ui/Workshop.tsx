@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "preact"
+import { useEffect, useMemo } from "preact";
 import {
   For,
   Show,
@@ -6,33 +6,27 @@ import {
   useComputed,
   useSignal,
   useSignalEffect,
-} from "preact/signals"
-import { createCalendarLinks } from "../calendar.ts"
-import Workshops from "../workshops.json" with { type: "json" }
+} from "preact/signals";
+import { createCalendarLinks } from "../calendar.ts";
+import { Loader2 } from "lucide-preact";
 
 // Types
-interface Host {
-  name: string
-  profile_url?: string
-  pfp_url?: string
+interface LiveEvent {
+  title: string;
+  description?: string;
+  location?: string;
+  start: string;
+  end: string;
 }
 
-interface WorkshopEvent {
-  start: string
-  title: string
-  description?: string
-  luma_url?: string
-  hosts: (string | Host)[]
-}
-
-interface ProcessedEvent extends Omit<WorkshopEvent, "start"> {
-  start: string // This will be the localized time string
+interface ProcessedEvent extends Omit<LiveEvent, "start"> {
+  start: string; // This will be the localized time string
 }
 
 interface DayData {
-  title: string
-  date: string
-  events: ProcessedEvent[]
+  title: string;
+  date: string;
+  events: ProcessedEvent[];
 }
 
 const formatDate = (date: Date | string) =>
@@ -40,18 +34,20 @@ const formatDate = (date: Date | string) =>
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-  })
+  });
 
 // Components
 interface LocationPickerProps {
-  selectedTimezone: string
-  timezones: Signal<string[]>
-  onTimezoneChange: (timezone: string) => void
+  selectedTimezone: string;
+  timezones: Signal<string[]>;
+  onTimezoneChange: (timezone: string) => void;
 }
 
-function LocationPicker(
-  { selectedTimezone, timezones, onTimezoneChange }: LocationPickerProps,
-) {
+function LocationPicker({
+  selectedTimezone,
+  timezones,
+  onTimezoneChange,
+}: LocationPickerProps) {
   return (
     <div
       class="flex items-center gap-2 mt-2"
@@ -61,57 +57,37 @@ function LocationPicker(
         animation-delay: 0.5s;
       "
     >
-      <span class="text-sm text-gray-600">
-        Location:
-      </span>
+      <span class="text-sm text-gray-600">Location:</span>
       <select
         value={selectedTimezone}
         class={`text-sm border border-gray-300 rounded px-2 py-1 appearance-none w-32`}
-        onChange={e => {
-          onTimezoneChange((e.target as HTMLSelectElement).value)
+        onChange={(e) => {
+          onTimezoneChange((e.target as HTMLSelectElement).value);
         }}
       >
-        {timezones.value.map(timezone => (
+        {timezones.value.map((timezone) => (
           <option key={timezone} value={timezone}>
-            {timezone
-              .split("/")
-              .at(-1)!
-              .replaceAll("_", " ")}
+            {timezone.split("/").at(-1)!.replaceAll("_", " ")}
           </option>
         ))}
       </select>
     </div>
-  )
-}
-
-interface ExpandButtonProps {
-  onExpand: () => void
-}
-
-function ExpandButton({ onExpand }: ExpandButtonProps) {
-  return (
-    <div class="sticky bottom-0 left-0 right-0 flex justify-center pb-6 z-20">
-      <div class="w-full max-w-[960px] flex justify-center">
-        <button
-          class="btn "
-          onClick={onExpand}
-        >
-          See all workshops
-        </button>
-      </div>
-    </div>
-  )
+  );
 }
 
 interface DayElementProps {
-  day: DayData
-  onRef?: (el: HTMLDivElement | null) => void
+  day: DayData;
 }
 
-function DayElement({ day, onRef }: DayElementProps) {
+function DayElement({ day }: DayElementProps) {
   return (
-    <div ref={onRef}>
-      <div class="flex items-center gap-2">
+    <div>
+      <div
+        class="flex items-center gap-2 my-1.5"
+        style={{
+          userSelect: "none",
+        }}
+      >
         <div class="w-12 h-12 bg-white rounded-lg shadow-sm flex flex-col overflow-hidden mb-2">
           <div class="bg-red-500 text-white text-xs font-semibold py-0.5 text-center">
             {new Date(day.date).toLocaleDateString("en-US", {
@@ -124,9 +100,7 @@ function DayElement({ day, onRef }: DayElementProps) {
         </div>
 
         <div class="flex flex-col">
-          <span class="text-lg">
-            {day.title}
-          </span>
+          <span class="text-lg">{day.title}</span>
 
           <span class="text-md text-gray-500">
             {new Date(day.date).toLocaleDateString("en-US", {
@@ -137,7 +111,7 @@ function DayElement({ day, onRef }: DayElementProps) {
         </div>
       </div>
 
-      <div class="flex flex-col ml-18 gap-4 mt-4">
+      <div class="flex flex-col ml-16 gap-4 mt-2">
         {day.events.map((event: ProcessedEvent, eventIndex: number) => (
           <div
             key={eventIndex}
@@ -159,14 +133,15 @@ function DayElement({ day, onRef }: DayElementProps) {
                   🗓️{"  "}
                   <a
                     title="Add to Apple / iCalendar"
-                    href={createCalendarLinks({
-                      title: event.title,
-                      start: new Date(event.start),
-                      end: new Date(
-                        new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000,
-                      ),
-                    })
-                      .ical}
+                    href={
+                      createCalendarLinks({
+                        title: event.title,
+                        start: new Date(event.start),
+                        end: new Date(
+                          new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000
+                        ),
+                      }).ical
+                    }
                     class="hover:underline"
                   >
                     iCalendar
@@ -175,199 +150,154 @@ function DayElement({ day, onRef }: DayElementProps) {
                   <a
                     title="Add to Google Calendar"
                     target="_blank"
-                    href={createCalendarLinks({
-                      title: event.title,
-                      start: new Date(event.start),
-                      end: new Date(
-                        new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000,
-                      ),
-                    })
-                      .google}
+                    href={
+                      createCalendarLinks({
+                        title: event.title,
+                        start: new Date(event.start),
+                        end: new Date(
+                          new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000
+                        ),
+                      }).google
+                    }
                     class="hover:underline"
                   >
                     Google
                   </a>
-                  {" • "}
-                  <a
-                    href={event.luma_url ?? ""}
-                    target="_blank"
-                    class="hover:underline"
-                  >
-                    Luma
-                  </a>
+                  {event.location && (
+                    <>
+                      {" • "}
+                      <a
+                        href={event.location}
+                        target="_blank"
+                        class="hover:underline"
+                      >
+                        Event Link
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
 
-              <a
-                class="block font-bold text-xl mt-1 mb-2 hover:underline"
-                href={event.luma_url ?? ""}
-                target="_blank"
-              >
-                {event.title}
-              </a>
+              <div class="block font-semibold text-xl mt-1 mb-2">{event.title}</div>
 
-              <div>
-                {event.description}
-              </div>
-
-              <div class="flex items-center gap-4 text-sm overflow-x-auto">
-                {event.hosts.map((host: string | Host, hostIndex: number) => (
-                  <div
-                    key={hostIndex}
-                    class="group flex flex-row whitespace-nowrap shrink-0"
-                  >
-                    {typeof host === "string" ? host : (
-                      <>
-                        {host.pfp_url && (
-                          <div className="avatar pr-3">
-                            <div style="width: 24px;">
-                              <img
-                                src={host.pfp_url}
-                                class="object-contain aspect-square rounded-full"
-                              />
-                            </div>
-                          </div>
-                        )}
-                        <a
-                          href={host.profile_url ?? "#"}
-                          class="inline group-hover:underline whitespace-nowrap"
-                          target="_blank"
-                        >
-                          {host.name}
-                        </a>
-                      </>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {event.description && (
+                <div class="text-gray-600">{event.description}</div>
+              )}
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export function WorkshopListCard() {
-  const isExpanded = useSignal(false)
-  const collapsed = useComputed(() => !isExpanded.value)
-  const timezones = useSignal<string[]>([])
-  const selectedTimezone = useSignal<string | null>(null)
+  const timezones = useSignal<string[]>([]);
+  const selectedTimezone = useSignal<string | null>(null);
+  const calendarEvents = useSignal<LiveEvent[]>([]);
+  const loading = useSignal(true);
 
   // Initialize timezones on client side
   useEffect(() => {
-    const supportedTimezones = Intl.supportedValuesOf("timeZone")
-    timezones.value = supportedTimezones
-    const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-    selectedTimezone.value = currentTimezone
-  })
+    const supportedTimezones = Intl.supportedValuesOf("timeZone");
+    timezones.value = supportedTimezones;
+    const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    selectedTimezone.value = currentTimezone;
+  });
+
+  // Fetch calendar events
+  useEffect(() => {
+    const fetchCalendarEvents = async () => {
+      try {
+        loading.value = true;
+        const response = await fetch("/calendar");
+        const events: LiveEvent[] = await response.json();
+        calendarEvents.value = events;
+      } catch (error) {
+        console.error("Error fetching calendar events:", error);
+        calendarEvents.value = [];
+      } finally {
+        loading.value = false;
+      }
+    };
+
+    fetchCalendarEvents();
+  }, []);
 
   const days = useComputed(() => {
-    const tz = selectedTimezone.value ?? "UTC"
-
-    const events = Workshops.days.flatMap(v => {
-      return v.events.map(event => {
-        return {
-          ...event,
-          start: new Date(event.start).toLocaleString("en-US", {
-            timeZone: tz,
-          }),
-        }
-      })
-    })
-
-    const dayEvents = events.reduce((acc, v) => {
-      const day = formatDate(v.start)
-      acc[day] = [...(acc[day] || []), v]
-      return acc
-    }, {} as Record<string, typeof events>)
-
-    return Object
-      .keys(dayEvents)
-      .sort()
-      .map((v, i) => ({
-        title: Workshops.days[i]?.title ?? " ",
-        date: v,
-        events: dayEvents[v],
-      }))
-  })
-
-  const daysElements = useSignal<(HTMLDivElement | null)[]>([])
-  useSignalEffect(() => {
-    daysElements.value = Array.from({ length: days.value.length }, () => null)
-  })
-
-  const latestDayIndex = useSignal(0)
-
-  useSignalEffect(() => {
-    // Find today's date or the last day if all events are in the past
-    const today = formatDate(new Date())
-
-    let targetIndex = Math.max(
-      -1,
-      days.value.findIndex(day => day.date >= today),
-    )
-    if (targetIndex === -1) {
-      targetIndex = days.value.length - 1
+    if (loading.value || calendarEvents.value.length === 0) {
+      return [];
     }
 
-    latestDayIndex.value = targetIndex
+    const tz = selectedTimezone.value ?? "UTC";
 
-    setTimeout(() => {
-      // Get the corresponding element
-      const targetDayElement = daysElements.value[latestDayIndex.value]
+    // Convert events to localized time
+    const events = calendarEvents.value.map((event) => {
+      return {
+        ...event,
+        start: new Date(event.start).toLocaleString("en-US", {
+          timeZone: tz,
+        }),
+      };
+    });
 
-      if (!targetDayElement) {
-        return
-      }
+    // Group events by day
+    const dayEvents = events.reduce((acc, event) => {
+      const day = formatDate(event.start);
+      acc[day] = [...(acc[day] || []), event];
+      return acc;
+    }, {} as Record<string, typeof events>);
 
-      const overflowContainer = targetDayElement.closest(
-        ".overflow-hidden",
-      ) as HTMLElement
-      if (overflowContainer) {
-        const margin = targetDayElement.offsetHeight * 0.4
-        const targetPosition = targetDayElement.offsetTop
-          - overflowContainer.offsetTop
-          - margin
-
-        overflowContainer.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        })
-      }
-    }, 100)
-  })
-
-  const handleExpand = () => {
-    isExpanded.value = true
-
-    // Scroll to the latest day after expanding
-    setTimeout(() => {
-      const targetDayElement = daysElements.value.at(latestDayIndex.value)
-
-      if (!targetDayElement) {
-        return
-      }
-
-      targetDayElement.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      })
-    }, 20)
-  }
+    // Sort days and create day data
+    return Object.keys(dayEvents)
+      .sort()
+      .map((dateKey) => ({
+        title: new Date(dateKey).toLocaleDateString("en-US", {
+          weekday: "long",
+        }),
+        date: dateKey,
+        events: dayEvents[dateKey].sort(
+          (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+        ),
+      }));
+  });
 
   const handleTimezoneChange = (timezone: string) => {
-    selectedTimezone.value = timezone
+    selectedTimezone.value = timezone;
+  };
+
+  if (loading.value) {
+    return (
+      <div class="relative bg-white w-full rounded-lg shadow-md border-[1px] border-gray-200">
+        <div
+          class="flex justify-between border-b-[1px] border-gray-200 p-3"
+          style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
+        >
+          <h2 class="text-3xl font-bold p-1.5">Upcoming Livestreams</h2>
+          <LocationPicker
+            selectedTimezone={selectedTimezone.value ?? "UTC"}
+            timezones={timezones}
+            onTimezoneChange={handleTimezoneChange}
+          />
+        </div>
+
+        <div class="flex flex-col gap-6 p-4">
+          <div class="flex items-center justify-center py-12">
+            <Loader2 class="w-8 h-8 text-blue-600 animate-spin" />
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div class="relative bg-white w-full rounded-md shadow-md border-[1px] border-gray-200 ">
+    <div class="relative bg-white w-full rounded-lg shadow-md border-[1px] border-gray-200">
       <div
-        class="sticky flex justify-between top-0 border-b-[1px] border-gray-200 p-3 z-20"
+        class="flex justify-between border-b-[1px] border-gray-200 p-3"
         style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
       >
-        <h2 class="text-3xl font-bold">
-          Workshops
+        <h2 class="text-3xl p-1.5 font-bold" style={{}}>
+          Upcoming Livestreams
         </h2>
         <LocationPicker
           selectedTimezone={selectedTimezone.value ?? "UTC"}
@@ -376,38 +306,20 @@ export function WorkshopListCard() {
         />
       </div>
 
-      <div
-        class="flex flex-col gap-6 p-4 overflow-hidden relative"
-        style={{
-          "mask-image": !isExpanded.value
-            ? "linear-gradient(to bottom, transparent, black 100px, black calc(100% - 160px), transparent)"
-            : "none",
-          height: isExpanded.value ? "auto" : "1000px",
-        }}
-      >
-        <For each={days}>
-          {(day: DayData, i: number) => (
-            <DayElement
-              day={day}
-              onRef={el => {
-                daysElements.value[i] = el
-              }}
-            />
-          )}
-        </For>
+      <div class="flex flex-col gap-6 p-4">
+        {days.value.length === 0 ? (
+          <div class="text-center py-12 text-gray-500">
+            No upcoming events found.
+          </div>
+        ) : (
+          <For each={days}>{(day: DayData) => <DayElement day={day} />}</For>
+        )}
       </div>
-
-      <Show when={collapsed}>
-        <ExpandButton onExpand={handleExpand} />
-      </Show>
     </div>
-  )
+  );
 }
 
-function ClockIcon(props: {
-  size?: any
-  class?: any
-}) {
+function ClockIcon(props: { size?: any; class?: any }) {
   return (
     <svg
       width={props.size ?? "100%"}
@@ -424,5 +336,5 @@ function ClockIcon(props: {
         stroke-linejoin="round"
       />
     </svg>
-  )
+  );
 }

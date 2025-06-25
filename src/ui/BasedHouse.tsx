@@ -47,6 +47,7 @@ export function BasedHouseBlueprint() {
         transformStyle: "preserve-3d",
         boxShadow: "8px 8px 16px rgba(0, 0, 0, 0.2)",
         transition: "transform 0.3s ease",
+        marginTop: "25px",
       }}
       onMouseMove={(e) => {
         const el = e.currentTarget

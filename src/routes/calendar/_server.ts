@@ -1,10 +1,9 @@
 import { HttpServerResponse } from "@effect/platform"
 import { Config, Effect, Schema } from "effect"
-import { FetchCalendarEvents } from "../../jobs/FetchCalendarData.ts"
+import * as Event from "../../db/models/Event.ts"
 
 export const GET = Effect.gen(function*() {
-  const icalUrl = yield* Config.string("HOMEBASE_LIVE_ICAL")
-  const events = yield* FetchCalendarEvents(icalUrl)
+  const events = yield* Event.list()
 
   return yield* HttpServerResponse.unsafeJson(events)
 })

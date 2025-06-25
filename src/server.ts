@@ -6,10 +6,9 @@ import {
 } from "@effect/platform"
 import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
 import { Layer, pipe } from "effect"
-import { BundleHttp, FileRouter } from "effect-bundler"
+import { BundleHttp, FileRouter, HttpAppExtra } from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
-import * as HttpAppExtra from "./HttpAppExtra.ts"
 
 import IndexHtml from "./index.html" with { type: "file" }
 

@@ -40,13 +40,15 @@ from ${sql(Table)}
 
 export const find = sqlSchema(
   Schema.ULID,
-  Schema.NonEmptyArray(Event).pipe(Schema.headNonEmpty),
+  pipe(
+    Schema.NonEmptyArray(Event),
+    Schema.headNonEmpty,
+  ),
 )((req, sql) =>
   sql`
 select *
 from ${sql(Table)}
 where id = ${req}
-limit 1;
   `
 )
 
@@ -56,9 +58,9 @@ export const create = sqlSchema(
     withGeneratedId(() => ulid()),
     Schema.ArrayEnsure,
   ),
-  Schema
-    .NonEmptyArray(Event)
-    .pipe(Schema.headNonEmpty),
+  pipe(
+    Schema.NonEmptyArray(Event),
+  ),
 )((req, sql) =>
   sql`
 insert into ${sql(Table)}
@@ -82,8 +84,7 @@ export const update = sqlSchema(
 update ${sql(Table)}
 set ${sql.update(event)}
 where id = ${event.id}
-returning *
-  `
+`
   })
 
   // TODO: make sure to send it in one sql statement to make sure it is atomic
@@ -96,9 +97,12 @@ export const remove = sqlSchema(
     Schema.ArrayEnsure,
   ),
   Schema.Void,
-)((req, sql) =>
-  sql`
+)((req, sql) => {
+  return sql`
 delete from ${sql(Table)}
-where icalId not in ${sql.in(req)} and icalId is not null
-  `
+where
+  icalId is not null
+  and icalId not in ${sql.in(req)}
 )
+`
+})

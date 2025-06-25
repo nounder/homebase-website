@@ -5,11 +5,11 @@ import {
   HttpServerResponse,
 } from "@effect/platform"
 import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
-import { HashSet, Layer, pipe, Schema } from "effect"
+import { Layer, pipe } from "effect"
 import { BundleHttp, FileRouter, HttpAppExtra } from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
-import * as FetchCalendarEvents from "./jobs/FetchCalendarData.ts"
+import * as CalendarSync from "./jobs/CalendarSync.ts"
 
 import IndexHtml from "./index.html" with { type: "file" }
 
@@ -25,16 +25,8 @@ export const App = HttpRouter.empty.pipe(
     BundleHttp.httpApp(),
   ),
   HttpRouter.get(
-    "/calendar",
-    await import("./routes/calendar/_server.ts").then(v => v.GET),
-  ),
-  HttpRouter.get(
     "/events.json",
-    await import("./routes/events/_server.ts").then(v => v.GET),
-  ),
-  HttpRouter.post(
-    "/events.json",
-    await import("./routes/events/_server.ts").then(v => v.POST),
+    await import("./routes/events.json/_server.ts").then(v => v.GET),
   ),
   HttpRouter.get(
     "/hello",
@@ -59,7 +51,7 @@ export const layerServer = () =>
     HttpServer.serve(App),
     HttpServer.withLogAddress,
     Layer.provide([
-      FetchCalendarEvents.layer,
+      CalendarSync.layer,
       BunHttpServer.layer({
         port: 3000,
       }),

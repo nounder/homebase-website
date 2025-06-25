@@ -1,4 +1,5 @@
-import { useEffect, useMemo } from "preact";
+import { Loader2 } from "lucide-preact"
+import { useEffect, useMemo } from "preact"
 import {
   For,
   Show,
@@ -6,27 +7,26 @@ import {
   useComputed,
   useSignal,
   useSignalEffect,
-} from "preact/signals";
-import { createCalendarLinks } from "../calendar.ts";
-import { Loader2 } from "lucide-preact";
+} from "preact/signals"
+import { createCalendarLinks } from "../calendar.ts"
 
 // Types
 interface LiveEvent {
-  title: string;
-  description?: string;
-  location?: string;
-  start: string;
-  end: string;
+  title: string
+  description?: string
+  location?: string
+  start: string
+  end: string
 }
 
 interface ProcessedEvent extends Omit<LiveEvent, "start"> {
-  start: string; // This will be the localized time string
+  start: string // This will be the localized time string
 }
 
 interface DayData {
-  title: string;
-  date: string;
-  events: ProcessedEvent[];
+  title: string
+  date: string
+  events: ProcessedEvent[]
 }
 
 const formatDate = (date: Date | string) =>
@@ -34,13 +34,13 @@ const formatDate = (date: Date | string) =>
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
-  });
+  })
 
 // Components
 interface LocationPickerProps {
-  selectedTimezone: string;
-  timezones: Signal<string[]>;
-  onTimezoneChange: (timezone: string) => void;
+  selectedTimezone: string
+  timezones: Signal<string[]>
+  onTimezoneChange: (timezone: string) => void
 }
 
 function LocationPicker({
@@ -57,26 +57,31 @@ function LocationPicker({
         animation-delay: 0.5s;
       "
     >
-      <span class="text-sm text-gray-600">Location:</span>
+      <span class="text-sm text-gray-600">
+        Location:
+      </span>
       <select
         value={selectedTimezone}
         class={`text-sm border border-gray-300 rounded px-2 py-1 appearance-none w-32`}
         onChange={(e) => {
-          onTimezoneChange((e.target as HTMLSelectElement).value);
+          onTimezoneChange((e.target as HTMLSelectElement).value)
         }}
       >
         {timezones.value.map((timezone) => (
           <option key={timezone} value={timezone}>
-            {timezone.split("/").at(-1)!.replaceAll("_", " ")}
+            {timezone
+              .split("/")
+              .at(-1)!
+              .replaceAll("_", " ")}
           </option>
         ))}
       </select>
     </div>
-  );
+  )
 }
 
 interface DayElementProps {
-  day: DayData;
+  day: DayData
 }
 
 function DayElement({ day }: DayElementProps) {
@@ -100,7 +105,9 @@ function DayElement({ day }: DayElementProps) {
         </div>
 
         <div class="flex flex-col">
-          <span class="text-lg">{day.title}</span>
+          <span class="text-lg">
+            {day.title}
+          </span>
 
           <span class="text-md text-gray-500">
             {new Date(day.date).toLocaleDateString("en-US", {
@@ -133,15 +140,14 @@ function DayElement({ day }: DayElementProps) {
                   🗓️{"  "}
                   <a
                     title="Add to Apple / iCalendar"
-                    href={
-                      createCalendarLinks({
-                        title: event.title,
-                        start: new Date(event.start),
-                        end: new Date(
-                          new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000
-                        ),
-                      }).ical
-                    }
+                    href={createCalendarLinks({
+                      title: event.title,
+                      start: new Date(event.start),
+                      end: new Date(
+                        new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000,
+                      ),
+                    })
+                      .ical}
                     class="hover:underline"
                   >
                     iCalendar
@@ -150,15 +156,14 @@ function DayElement({ day }: DayElementProps) {
                   <a
                     title="Add to Google Calendar"
                     target="_blank"
-                    href={
-                      createCalendarLinks({
-                        title: event.title,
-                        start: new Date(event.start),
-                        end: new Date(
-                          new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000
-                        ),
-                      }).google
-                    }
+                    href={createCalendarLinks({
+                      title: event.title,
+                      start: new Date(event.start),
+                      end: new Date(
+                        new Date(event.start).getTime() + 1.5 * 60 * 60 * 1000,
+                      ),
+                    })
+                      .google}
                     class="hover:underline"
                   >
                     Google
@@ -178,58 +183,62 @@ function DayElement({ day }: DayElementProps) {
                 </div>
               </div>
 
-              <div class="block font-semibold text-xl mt-1 mb-2">{event.title}</div>
+              <div class="block font-semibold text-xl mt-1 mb-2">
+                {event.title}
+              </div>
 
               {event.description && (
-                <div class="text-gray-600">{event.description}</div>
+                <div class="text-gray-600">
+                  {event.description}
+                </div>
               )}
             </div>
           </div>
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 export function WorkshopListCard() {
-  const timezones = useSignal<string[]>([]);
-  const selectedTimezone = useSignal<string | null>(null);
-  const calendarEvents = useSignal<LiveEvent[]>([]);
-  const loading = useSignal(true);
+  const timezones = useSignal<string[]>([])
+  const selectedTimezone = useSignal<string | null>(null)
+  const calendarEvents = useSignal<LiveEvent[]>([])
+  const loading = useSignal(true)
 
   // Initialize timezones on client side
   useEffect(() => {
-    const supportedTimezones = Intl.supportedValuesOf("timeZone");
-    timezones.value = supportedTimezones;
-    const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    selectedTimezone.value = currentTimezone;
-  });
+    const supportedTimezones = Intl.supportedValuesOf("timeZone")
+    timezones.value = supportedTimezones
+    const currentTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+    selectedTimezone.value = currentTimezone
+  })
 
   // Fetch calendar events
   useEffect(() => {
     const fetchCalendarEvents = async () => {
       try {
-        loading.value = true;
-        const response = await fetch("/calendar");
-        const events: LiveEvent[] = await response.json();
-        calendarEvents.value = events;
+        loading.value = true
+        const response = await fetch("/events.json")
+        const events: LiveEvent[] = await response.json()
+        calendarEvents.value = events
       } catch (error) {
-        console.error("Error fetching calendar events:", error);
-        calendarEvents.value = [];
+        console.error("Error fetching calendar events:", error)
+        calendarEvents.value = []
       } finally {
-        loading.value = false;
+        loading.value = false
       }
-    };
+    }
 
-    fetchCalendarEvents();
-  }, []);
+    fetchCalendarEvents()
+  }, [])
 
   const days = useComputed(() => {
     if (loading.value || calendarEvents.value.length === 0) {
-      return [];
+      return []
     }
 
-    const tz = selectedTimezone.value ?? "UTC";
+    const tz = selectedTimezone.value ?? "UTC"
 
     // Convert events to localized time
     const events = calendarEvents.value.map((event) => {
@@ -238,18 +247,19 @@ export function WorkshopListCard() {
         start: new Date(event.start).toLocaleString("en-US", {
           timeZone: tz,
         }),
-      };
-    });
+      }
+    })
 
     // Group events by day
     const dayEvents = events.reduce((acc, event) => {
-      const day = formatDate(event.start);
-      acc[day] = [...(acc[day] || []), event];
-      return acc;
-    }, {} as Record<string, typeof events>);
+      const day = formatDate(event.start)
+      acc[day] = [...(acc[day] || []), event]
+      return acc
+    }, {} as Record<string, typeof events>)
 
     // Sort days and create day data
-    return Object.keys(dayEvents)
+    return Object
+      .keys(dayEvents)
       .sort()
       .map((dateKey) => ({
         title: new Date(dateKey).toLocaleDateString("en-US", {
@@ -257,14 +267,14 @@ export function WorkshopListCard() {
         }),
         date: dateKey,
         events: dayEvents[dateKey].sort(
-          (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+          (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime(),
         ),
-      }));
-  });
+      }))
+  })
 
   const handleTimezoneChange = (timezone: string) => {
-    selectedTimezone.value = timezone;
-  };
+    selectedTimezone.value = timezone
+  }
 
   if (loading.value) {
     return (
@@ -273,7 +283,9 @@ export function WorkshopListCard() {
           class="flex justify-between border-b-[1px] border-gray-200 p-3"
           style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
         >
-          <h2 class="text-3xl font-bold p-1.5">Upcoming Livestreams</h2>
+          <h2 class="text-3xl font-bold p-1.5">
+            Upcoming Livestreams
+          </h2>
           <LocationPicker
             selectedTimezone={selectedTimezone.value ?? "UTC"}
             timezones={timezones}
@@ -287,7 +299,7 @@ export function WorkshopListCard() {
           </div>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -307,16 +319,20 @@ export function WorkshopListCard() {
       </div>
 
       <div class="flex flex-col gap-6 p-4">
-        {days.value.length === 0 ? (
-          <div class="text-center py-12 text-gray-500">
-            No upcoming events found.
-          </div>
-        ) : (
-          <For each={days}>{(day: DayData) => <DayElement day={day} />}</For>
-        )}
+        {days.value.length === 0
+          ? (
+            <div class="text-center py-12 text-gray-500">
+              No upcoming events found.
+            </div>
+          )
+          : (
+            <For each={days}>
+              {(day: DayData) => <DayElement day={day} />}
+            </For>
+          )}
       </div>
     </div>
-  );
+  )
 }
 
 function ClockIcon(props: { size?: any; class?: any }) {
@@ -336,5 +352,5 @@ function ClockIcon(props: { size?: any; class?: any }) {
         stroke-linejoin="round"
       />
     </svg>
-  );
+  )
 }

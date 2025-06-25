@@ -21,7 +21,7 @@
     "@effect/sql": "^0.37.10",
     "@effect/sql-sqlite-bun": "^0.38.10",
     "effect": "^3.16.7",
-    "effect-bundler": "nounder/effect-bundler",
+    "effect-bundler": "nounder/effect-bundler#44cec3a",
     "@farcaster/frame-sdk": "^0.0.63",
     "@tailwindcss/node": "^4.1.8",
     "tw-animate-css": "^1.3.4",

@@ -12,7 +12,7 @@
         "@tailwindcss/node": "^4.1.8",
         "daisyui": "^5.0.43",
         "effect": "^3.16.7",
-        "effect-bundler": "nounder/effect-bundler",
+        "effect-bundler": "nounder/effect-bundler#44cec3a",
         "ical.js": "^2.1.0",
         "lucide-preact": "^0.514.0",
         "preact": "nounder/preact-uno#d747dca",
@@ -183,7 +183,7 @@
 
     "effect": ["effect@3.16.7", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "fast-check": "^3.23.1" } }, "sha512-UEE1lXpXrx3h+HGgKDaNlyBpHanpjBdSbxAPl0lEQJ6dFyc8Fs22D6zLMp2HkS22H50GS7ZEVpSeO52He+9oTw=="],
 
-    "effect-bundler": ["effect-bundler@github:nounder/effect-bundler#d261d98", { "peerDependencies": { "@effect/platform": ">=0.82", "@effect/platform-bun": ">=0.65", "@tailwindcss/node": "^4.1.7", "@tanstack/react-router": "^1.120.10", "effect": ">=3.16.4", "typescript": "^5.8.3" }, "optionalPeers": ["@effect/platform", "@effect/platform-bun", "@tailwindcss/node", "@tanstack/react-router"] }, "nounder-effect-bundler-d261d98"],
+    "effect-bundler": ["effect-bundler@github:nounder/effect-bundler#44cec3a", { "peerDependencies": { "@effect/platform": ">=0.82", "@effect/platform-bun": ">=0.65", "@tailwindcss/node": "^4.1.7", "@tanstack/react-router": "^1.120.10", "effect": ">=3.16.4", "typescript": "^5.8.3" }, "optionalPeers": ["@effect/platform", "@effect/platform-bun", "@tailwindcss/node", "@tanstack/react-router"] }, "nounder-effect-bundler-44cec3a"],
 
     "enhanced-resolve": ["enhanced-resolve@5.18.1", "", { "dependencies": { "graceful-fs": "^4.2.4", "tapable": "^2.2.0" } }, "sha512-ZSW3ma5GkcQBIpwZTSRAI8N71Uuwgs93IezB7mf7R60tC8ZbJideoDNKjHn2O9KIlx6rkGTTEk1xUCK2E1Y2Yg=="],
 

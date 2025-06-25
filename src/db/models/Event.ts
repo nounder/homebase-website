@@ -1,4 +1,4 @@
-import { DateTime, pipe, Schema } from "effect"
+import { Effect, pipe, Schema } from "effect"
 import { ulid } from "ulid"
 import { sqlSchema } from "../schema.ts"
 import { withGeneratedId } from "../utils.ts"
@@ -15,6 +15,10 @@ export const EventDetails = Schema.Struct({
     .pipe(Schema.NullOr),
   start: Schema.String,
   end: Schema.String,
+  icalId: pipe(
+    Schema.String,
+    Schema.NullOr,
+  ),
 })
 
 export const Event = Schema.Struct({
@@ -48,6 +52,7 @@ export const create = sqlSchema(
   pipe(
     EventDetails,
     withGeneratedId(() => ulid()),
+    Schema.ArrayEnsure,
   ),
   Schema
     .NonEmptyArray(Event)
@@ -55,7 +60,43 @@ export const create = sqlSchema(
 )((req, sql) =>
   sql`
 insert into ${sql(Table)}
-${sql.insert([req])}
+${sql.insert(req)}
 returning *
+  `
+)
+
+export const update = sqlSchema(
+  pipe(
+    Schema.Struct({
+      id: Schema.ULID,
+      ...EventDetails.fields,
+    }),
+    Schema.ArrayEnsure,
+  ),
+  Schema.Void,
+)((req, sql) => {
+  const updates = req.map(event => {
+    return sql`
+update ${sql(Table)}
+set ${sql.update(event)}
+where id = ${event.id}
+returning *
+  `
+  })
+
+  // TODO: make sure to send it in one sql statement to make sure it is atomic
+  return Effect.all(updates)
+})
+
+export const remove = sqlSchema(
+  pipe(
+    Schema.String,
+    Schema.ArrayEnsure,
+  ),
+  Schema.Void,
+)((req, sql) =>
+  sql`
+delete from ${sql(Table)}
+where icalId not in ${sql.in(req)} and icalId is not null
   `
 )

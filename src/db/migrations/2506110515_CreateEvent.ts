@@ -11,7 +11,11 @@ create table "Event" (
   "description" text,
   "link" text,
   "start" text not null,
-  "end" text not null
+  "end" text not null,
+  "icalId" text
 );
+
+create unique index "Event_icalId_idx"
+on "Event" ("icalId");
 `
 })

@@ -9,6 +9,7 @@ import { Layer, pipe } from "effect"
 import { BundleHttp, FileRouter, HttpAppExtra } from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
+import * as FetchCalendarEvents from "./jobs/FetchCalendarData.ts"
 
 import IndexHtml from "./index.html" with { type: "file" }
 
@@ -58,7 +59,7 @@ export const layerServer = () =>
     HttpServer.serve(App),
     HttpServer.withLogAddress,
     Layer.provide([
-      FetchHttpClient.layer,
+      FetchCalendarEvents.layer,
       BunHttpServer.layer({
         port: 3000,
       }),
@@ -66,6 +67,9 @@ export const layerServer = () =>
         import.meta.resolve("./routes"),
         "_manifest.ts",
       ),
+    ]),
+    Layer.provide([
+      FetchHttpClient.layer,
       SqlLive,
       SqlMigrator,
     ]),

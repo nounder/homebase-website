@@ -11,11 +11,12 @@ CREATE TABLE IF NOT EXISTS "Event" (
   "description" text,
   "link" text,
   "start" text not null,
-  "end" text not null
+  "end" text not null,
+  "icalId" text
 );
 
 
 INSERT INTO
   _Migration
 VALUES
-  (2506110515, '2025-06-11 18:03:33', 'CreateEvent');
+  (2506110515, '2025-06-25 19:19:08', 'CreateEvent');

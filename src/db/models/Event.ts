@@ -7,12 +7,14 @@ const Table = "Event"
 
 export const EventDetails = Schema.Struct({
   title: Schema.String,
-  description: Schema
-    .String
-    .pipe(Schema.NullOr),
-  link: Schema
-    .String
-    .pipe(Schema.NullOr),
+  description: pipe(
+    Schema.String,
+    Schema.NullOr,
+  ),
+  link: pipe(
+    Schema.String,
+    Schema.NullOr,
+  ),
   start: Schema.String,
   end: Schema.String,
   icalId: pipe(

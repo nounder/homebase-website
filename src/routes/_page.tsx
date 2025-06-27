@@ -2,11 +2,8 @@ import { useEffect } from "preact"
 import { BasedHouseCard } from "../ui/BasedHouse"
 import { Footer } from "../ui/Footer"
 import { Header } from "../ui/Header"
-import { Map } from "../ui/Map"
-import { Socials } from "../ui/Socials"
 import { VideoGallery } from "../ui/VideoGallery"
 import { WorkshopListCard } from "../ui/Workshop"
-import Events from "./Events.tsx"
 
 export default function() {
   useEffect(() => {

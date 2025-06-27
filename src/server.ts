@@ -5,8 +5,14 @@ import {
   HttpServerResponse,
 } from "@effect/platform"
 import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
-import { Layer, pipe } from "effect"
-import { BundleHttp, FileRouter, HttpAppExtra } from "effect-bundler"
+import { Context, Effect, Layer, pipe } from "effect"
+import {
+  BundleHttp,
+  FileHttpRouter,
+  FileRouter,
+  HttpAppExtra,
+  Router,
+} from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
 import * as CalendarSync from "./jobs/CalendarSync.ts"
@@ -55,10 +61,6 @@ export const layerServer = () =>
       BunHttpServer.layer({
         port: 3000,
       }),
-      FileRouter.layer(
-        import.meta.resolve("./routes"),
-        "_manifest.ts",
-      ),
     ]),
     Layer.provide([
       FetchHttpClient.layer,
@@ -72,8 +74,10 @@ if (import.meta.main) {
     layerServer(),
     Layer.provide([
       ClientBundle.devLayer,
+      FileRouter.layer(import.meta.resolve("./routes")),
       BunContext.layer,
     ]),
+    Layer.provide(BunContext.layer),
     Layer.launch,
     BunRuntime.runMain,
   )

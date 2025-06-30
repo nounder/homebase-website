@@ -1,23 +1,24 @@
 import {
   FetchHttpClient,
+  HttpMiddleware,
   HttpRouter,
   HttpServer,
   HttpServerResponse,
 } from "@effect/platform"
 import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
-import { Context, Effect, Layer, pipe } from "effect"
+import { Effect, Layer, pipe } from "effect"
 import {
   BundleHttp,
   FileHttpRouter,
   FileRouter,
   HttpAppExtra,
-  Router,
 } from "effect-bundler"
 import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
 import { SqlLive, SqlMigrator } from "./db/Sql.ts"
 import * as CalendarSync from "./jobs/CalendarSync.ts"
 
 import IndexHtml from "./index.html" with { type: "file" }
+import { Servers } from "./routes/_manifest.ts"
 
 const BundlePath = "/_bundle"
 
@@ -30,13 +31,21 @@ export const App = HttpRouter.empty.pipe(
     BundlePath,
     BundleHttp.httpApp(),
   ),
-  HttpRouter.get(
-    "/events.json",
-    await import("./routes/events.json/_server.ts").then(v => v.GET),
-  ),
-  HttpRouter.get(
-    "/hello",
-    HttpServerResponse.text("Hello World!"),
+  HttpRouter.use(
+    HttpMiddleware.make(app => {
+      return Effect.gen(function*() {
+        const fileRouter = yield* FileHttpRouter.make(Servers)
+        const fileRes = yield* fileRouter.pipe(
+          Effect.catchTag("RouteNotFound", () => Effect.succeed(null)),
+        )
+
+        if (fileRes === null) {
+          return yield* app
+        }
+
+        return fileRes
+      })
+    }),
   ),
   HttpAppExtra.withErrorHandled,
 )
@@ -75,7 +84,6 @@ if (import.meta.main) {
     Layer.provide([
       ClientBundle.devLayer,
       FileRouter.layer(import.meta.resolve("./routes")),
-      BunContext.layer,
     ]),
     Layer.provide(BunContext.layer),
     Layer.launch,

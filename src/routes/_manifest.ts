@@ -6,7 +6,6 @@ import type { Router } from "effect-bundler"
 
 const layout__ = {
   path: "/",
-  parent: undefined,
   load: () => import("./_layout.tsx"),
 } as const
 
@@ -33,17 +32,17 @@ const server__events_json = {
   load: () => import("./events.json/_server.ts"),
 } as const
 
-export const Layouts: Router.Layouts = [
+export const Layouts: Router.LayoutRoutes = [
   layout__,
   layout__about
 ] as const
 
-export const Pages: Router.Pages = [
+export const Pages: Router.PageRoutes = [
   page__,
   page__about
 ] as const
 
-export const Servers: Router.Servers = [
+export const Servers: Router.ServerRoutes = [
   server__events_json
 ] as const
  

@@ -16,12 +16,7 @@ type Mapper<IA> =
   | NonGenMapper<IA>
   | GenMapper<IA>
 
-export function sqlSchema<
-  II,
-  IA,
-  AA,
-  AI,
->(
+export function sqlSchema<II, IA, AA, AI>(
   Request: Schema.Schema<IA, II, never>,
   Result: Schema.Schema<AA, AI, never>,
 ) {

@@ -1,5 +1,5 @@
 import { HttpServerResponse } from "@effect/platform"
-import { Effect } from "effect"
+import { Effect, Schema } from "effect"
 import { Event } from "../../db/index.ts"
 
 export const GET = Effect.gen(function*() {

@@ -1,72 +1,38 @@
-import { FetchHttpClient, HttpRouter, HttpServer } from "@effect/platform"
-import { BunContext, BunHttpServer, BunRuntime } from "@effect/platform-bun"
-import { Layer, pipe } from "effect"
-import {
-  BundleHttp,
-  FileHttpRouter,
-  FileRouter,
-  HttpAppExtra,
-  Router,
-} from "effect-bundler"
-import { BunBundle, BunTailwindPlugin } from "effect-bundler/bun"
-import { SqlLive, SqlMigrator } from "./db/Sql.ts"
-import * as CalendarSync from "./jobs/CalendarSync.ts"
-
+import { FetchHttpClient, HttpClient, HttpRouter } from "@effect/platform"
+import { Console, Effect, Layer } from "effect"
+import { BunTailwindPlugin, Start } from "effect-bundler"
+import * as Sql from "./db/Sql"
 import IndexHtml from "./index.html" with { type: "file" }
+import * as CalendarSync from "./jobs/CalendarSync"
+import * as Telemetry from "./Telemetry"
 
-const BundlePath = "/_bundle"
-
-export const App = HttpRouter.empty.pipe(
-  HttpRouter.get(
-    "*",
-    BundleHttp.entrypoint(IndexHtml),
-  ),
-  HttpRouter.mountApp(
-    BundlePath,
-    BundleHttp.httpApp(),
-  ),
-  HttpRouter.use(FileHttpRouter.middleware()),
-  HttpAppExtra.withErrorHandled,
-)
-
-const ClientBundle = BunBundle
-  .bundleClient({
-    entrypoints: [
-      IndexHtml,
-    ],
-    publicPath: `${BundlePath}/`,
-    plugins: [
-      BunTailwindPlugin.make(),
-    ],
-  })
-
-export const layerServer = () =>
-  pipe(
-    HttpServer.serve(App),
-    HttpServer.withLogAddress,
+export default Layer
+  .mergeAll(
+    Start.router(() => import("./routes/_manifest")),
+    Start.bundleClient({
+      entrypoints: [
+        IndexHtml,
+      ],
+      plugins: [
+        BunTailwindPlugin.make(),
+      ],
+    }),
+    CalendarSync.layer(),
+    Sql.SqlLive,
+    Sql.SqlMigrator,
+  )
+  .pipe(
     Layer.provide([
-      CalendarSync.layer,
-      BunHttpServer.layer({
-        port: 3000,
-      }),
-    ]),
-    Layer.provide([
+      // we need to provide sql again for CalendarSync
+
+      Sql.SqlLive,
+      Sql.SqlMigrator,
+      Telemetry.layer(),
+
       FetchHttpClient.layer,
-      SqlLive,
-      SqlMigrator,
     ]),
   )
 
 if (import.meta.main) {
-  pipe(
-    layerServer(),
-    Layer.provide([
-      ClientBundle.devLayer,
-      Router.layer(() => import("./routes/_manifest.ts")),
-      FileRouter.layer(import.meta.resolve("./routes")),
-    ]),
-    Layer.provide(BunContext.layer),
-    Layer.launch,
-    BunRuntime.runMain,
-  )
+  Start.serve(() => import("./server"))
 }

@@ -34,8 +34,9 @@
     "plugins": [
       {
         "name": "@effect/language-service",
-        "barrelImportPackages": [
-          "effect"
+        "namespaceImportPackages": [
+          "effect",
+          "@effect/platform"
         ]
       }
     ]

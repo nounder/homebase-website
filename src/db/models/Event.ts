@@ -1,4 +1,4 @@
-import { Effect, pipe, Schema } from "effect"
+import { pipe, Schema } from "effect"
 import { ulid } from "ulid"
 import { sqlSchema } from "../schema.ts"
 import { withGeneratedId } from "../utils.ts"
@@ -61,13 +61,13 @@ export const create = sqlSchema(
   pipe(
     Schema.NonEmptyArray(Event),
   ),
-)((req, sql) =>
-  sql`
+)((req, sql) => {
+  return sql`
 insert into ${sql(Table)}
 ${sql.insert(req)}
 returning *
   `
-)
+})
 
 export const update = sqlSchema(
   pipe(
@@ -78,17 +78,14 @@ export const update = sqlSchema(
     Schema.ArrayEnsure,
   ),
   Schema.Void,
-)((req, sql) => {
-  const updates = req.map(event => {
-    return sql`
+)(function*(req, sql) {
+  for (const event of req) {
+    yield* sql`
 update ${sql(Table)}
 set ${sql.update(event)}
 where id = ${event.id}
 `
-  })
-
-  // TODO: make sure to send it in one sql statement to make sure it is atomic
-  return Effect.all(updates)
+  }
 })
 
 export const remove = sqlSchema(
@@ -103,6 +100,5 @@ delete from ${sql(Table)}
 where
   icalId is not null
   and icalId not in ${sql.in(req)}
-)
 `
 })

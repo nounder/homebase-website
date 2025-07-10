@@ -1,6 +1,10 @@
-import { FileSystem } from "@effect/platform"
-import { SqliteClient, SqliteMigrator } from "@effect/sql-sqlite-bun"
-import { Config, Effect, Layer, pipe } from "effect"
+import * as FileSystem from "@effect/platform/FileSystem"
+import * as SqliteClient from "@effect/sql-sqlite-bun/SqliteClient"
+import * as SqliteMigrator from "@effect/sql-sqlite-bun/SqliteMigrator"
+import * as Config from "effect/Config"
+import * as Effect from "effect/Effect"
+import { pipe } from "effect/Function"
+import * as Layer from "effect/Layer"
 import * as NPath from "node:path"
 import * as NUrl from "node:url"
 

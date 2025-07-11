@@ -1,4 +1,4 @@
-import "effect-bundler/client"
+import "effect-start/client"
 
 import { render } from "preact"
 import { App } from "./App.tsx"

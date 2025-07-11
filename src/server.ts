@@ -1,6 +1,6 @@
 import { FetchHttpClient, HttpClient, HttpRouter } from "@effect/platform"
 import { Console, Effect, Layer } from "effect"
-import { BunTailwindPlugin, Start } from "effect-bundler"
+import { BunTailwindPlugin, Start } from "effect-start"
 import * as Sql from "./db/Sql"
 import IndexHtml from "./index.html" with { type: "file" }
 import * as CalendarSync from "./jobs/CalendarSync"

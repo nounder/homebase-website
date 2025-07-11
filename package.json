@@ -30,7 +30,7 @@
     "@tailwindcss/node": "^4.1.10",
     "daisyui": "^5.0.43",
     "effect": "^3.16.12",
-    "effect-bundler": "nounder/effect-bundler#55af314",
+    "effect-start": "nounder/effect-start#2120500",
     "ical.js": "^2.1.0",
     "lucide-preact": "^0.514.0",
     "preact": "nounder/preact-uno#d747dca",

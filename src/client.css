@@ -64,15 +64,6 @@
   .btn-brand:hover {
     background: var(--color-brand-dark);
   }
-
-  /* Faint dot field echoing the logo, for use on brand-colored surfaces. */
-  .dot-field {
-    background-image: radial-gradient(
-      rgb(255 255 255 / 0.11) 1.5px,
-      transparent 1.5px
-    );
-    background-size: 22px 22px;
-  }
 }
 
 @keyframes fade-in {
@@ -85,24 +76,3 @@
   }
 }
 
-@keyframes dot-wave {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.dot-wave > g {
-  animation: dot-wave 500ms ease-out backwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .dot-wave > g {
-    animation: none;
-  }
-}

@@ -3,15 +3,10 @@ import { DotMatrix } from "./DotMatrix.tsx"
 
 const Homebase = word("HOMEBASE")
 
-interface WordmarkProps {
-  class?: string
-}
-
-export function Wordmark(props: WordmarkProps) {
+export function Wordmark() {
   return (
     <DotMatrix
       map={Homebase}
-      class={props.class}
       label="Homebase"
     />
   )

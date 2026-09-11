@@ -1,10 +1,9 @@
 import { HouseLogo } from "./HouseLogo.tsx"
 import { Socials } from "./Socials.tsx"
-import { Wordmark } from "./Wordmark.tsx"
 
 export function Footer() {
   return (
-    <div class="bg-brand dot-field w-full p-5 overflow-hidden relative">
+    <div class="bg-brand w-full p-5 overflow-hidden relative">
       <div class="relative">
         {/* White curved top section */}
         <div
@@ -25,12 +24,8 @@ export function Footer() {
         {/* Content section with proper spacing */}
         <div class="relative pt-40 md:pt-40 pb-4 md:pb-4">
           <div class="w-full max-w-4xl mx-auto flex flex-col items-center text-center space-y-6">
-            <div class="w-16 text-white">
+            <div class="w-24 text-white">
               <HouseLogo />
-            </div>
-
-            <div class="w-[44%] max-sm:w-[72%] text-white">
-              <Wordmark />
             </div>
 
             <div class="text-white">

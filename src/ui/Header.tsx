@@ -5,7 +5,7 @@ import { Wordmark } from "./Wordmark.tsx"
 export function Header() {
   return (
     <div
-      class="bg-brand dot-field"
+      class="bg-brand"
       style="
           margin-top: -80px;
           transform: translateY(80px);
@@ -13,12 +13,12 @@ export function Header() {
     >
       <div class="relative overflow-hidden">
         <div class="w-full max-w-[960px] mx-auto px-6 text-center flex flex-col items-center">
-          <div class="mt-12 w-24 text-white">
-            <HouseLogo class="dot-wave" />
+          <div class="mt-12 w-24 max-sm:w-20 text-white">
+            <HouseLogo />
           </div>
 
-          <div class="mt-7 w-[58%] max-sm:w-[86%] text-white">
-            <Wordmark class="dot-wave" />
+          <div class="mt-7 w-[64%] max-sm:w-[90%] text-white">
+            <Wordmark />
           </div>
 
           <p class="text-white/80 mt-6 mb-6 text-lg max-sm:text-base">

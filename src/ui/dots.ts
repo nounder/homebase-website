@@ -14,23 +14,23 @@ export const DotPitch = 10
 
 export const DotRadius = 4
 
-const LetterGap = 2
+const LetterGap = 3
 
-function parse(cells: readonly string[]): DotMap {
+function solid(cells: readonly string[]): DotMap {
   const dots: Dot[] = []
 
-  cells.forEach((row, y) => {
+  cells.forEach((row, y) =>
     row
       .split("")
       .forEach((cell, x) => {
-        if (cell !== " " && cell !== ".") {
+        if (cell === "X") {
           dots.push({
             x,
             y,
           })
         }
       })
-  })
+  )
 
   return {
     columns: Math.max(...cells.map((row) => row.length)),
@@ -39,7 +39,26 @@ function parse(cells: readonly string[]): DotMap {
   }
 }
 
-export const House = parse([
+/**
+ * Letters are drawn as solid blocks and then traced, which is what gives the
+ * wordmark its hollow strokes: every stem comes out as two lines of dots.
+ */
+function outlined(cells: readonly string[]): DotMap {
+  const filled = (x: number, y: number) => cells[y]?.[x] === "X"
+  const map = solid(cells)
+
+  return {
+    ...map,
+    dots: map.dots.filter(({ x, y }) =>
+      !(filled(x - 1, y)
+        && filled(x + 1, y)
+        && filled(x, y - 1)
+        && filled(x, y + 1))
+    ),
+  }
+}
+
+export const House = solid([
   "...X...",
   "..XXX..",
   ".XXXXX.",
@@ -50,89 +69,124 @@ export const House = parse([
 ])
 
 const Glyphs: Record<string, DotMap> = {
-  A: parse([
-    ".XXXXX.",
-    "XXXXXXX",
-    "XX...XX",
-    "XX...XX",
-    "XXXXXXX",
-    "XXXXXXX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
+  A: outlined([
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
   ]),
-  B: parse([
-    "XXXXXX.",
-    "XXXXXXX",
-    "XX...XX",
-    "XX...XX",
-    "XXXXXXX",
-    "XXXXXXX",
-    "XX...XX",
-    "XX...XX",
-    "XXXXXXX",
-    "XXXXXX.",
+  B: outlined([
+    "XXXXXXXXXX.",
+    "XXXXXXXXXX.",
+    "XXXXXXXXXX.",
+    "XXX....XXX.",
+    "XXX....XXX.",
+    "XXX....XXX.",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
   ]),
-  E: parse([
-    "XXXXXXX",
-    "XXXXXXX",
-    "XX.....",
-    "XX.....",
-    "XXXXX..",
-    "XXXXX..",
-    "XX.....",
-    "XX.....",
-    "XXXXXXX",
-    "XXXXXXX",
+  E: outlined([
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX........",
+    "XXX........",
+    "XXX........",
+    "XXXXXXXX...",
+    "XXXXXXXX...",
+    "XXXXXXXX...",
+    "XXX........",
+    "XXX........",
+    "XXX........",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
   ]),
-  H: parse([
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XXXXXXX",
-    "XXXXXXX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
+  H: outlined([
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
   ]),
-  M: parse([
-    "XX.....XX",
-    "XXX...XXX",
-    "XXXX.XXXX",
-    "XX.XXX.XX",
-    "XX..X..XX",
-    "XX.....XX",
-    "XX.....XX",
-    "XX.....XX",
-    "XX.....XX",
-    "XX.....XX",
+  M: outlined([
+    "XXX.......XXX",
+    "XXXX.....XXXX",
+    "XXXXX...XXXXX",
+    "XXXXXX.XXXXXX",
+    "XXXXXXXXXXXXX",
+    "XXX.XXXXX.XXX",
+    "XXX..XXX..XXX",
+    "XXX...X...XXX",
+    "XXX.......XXX",
+    "XXX.......XXX",
+    "XXX.......XXX",
+    "XXX.......XXX",
+    "XXX.......XXX",
+    "XXX.......XXX",
+    "XXX.......XXX",
   ]),
-  O: parse([
-    ".XXXXX.",
-    "XXXXXXX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XX...XX",
-    "XXXXXXX",
-    ".XXXXX.",
+  O: outlined([
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXX.....XXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
   ]),
-  S: parse([
-    ".XXXXX.",
-    "XXXXXXX",
-    "XX...XX",
-    "XX.....",
-    "XXXXXX.",
-    ".XXXXXX",
-    ".....XX",
-    "XX...XX",
-    "XXXXXXX",
-    ".XXXXX.",
+  S: outlined([
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXX........",
+    "XXX........",
+    "XXX........",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "........XXX",
+    "........XXX",
+    "........XXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
   ]),
 }
 
@@ -161,20 +215,4 @@ export function word(text: string): DotMap {
     rows: Math.max(...glyphs.map((glyph) => glyph.rows)),
     dots,
   }
-}
-
-/**
- * Dots bucketed by column so they can be animated as a wave without
- * putting an inline style on every single dot.
- */
-export function byColumn(map: DotMap): Dot[][] {
-  const columns: Dot[][] = Array
-    .from({ length: map.columns })
-    .map(() => [])
-
-  for (const dot of map.dots) {
-    columns[dot.x].push(dot)
-  }
-
-  return columns
 }

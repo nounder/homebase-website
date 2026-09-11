@@ -98,7 +98,7 @@ export function VideoGallery() {
           <div class="w-full max-w-[960px] flex justify-center">
             <div class="relative">
               <button
-                class="relative z-10 btn btn"
+                class="btn-brand relative z-10"
                 onClick={() => setIsExpanded(true)}
               >
                 See all videos
@@ -126,7 +126,7 @@ export function VideoGallery() {
             }}
           >
             <div class="flex justify-between items-center p-5">
-              <h3 class="font-bold text-2xl text-blue-500 truncate pr-4">
+              <h3 class="font-bold text-2xl text-brand truncate pr-4">
                 {selectedVideo?.title}
               </h3>
               <button
@@ -147,7 +147,7 @@ export function VideoGallery() {
                         <div class="flex flex-col items-center">
                           <Loader2
                             size={36}
-                            class="text-[#1761ff] mb-2 animate-spin"
+                            class="text-brand mb-2 animate-spin"
                           />
                         </div>
                       </div>
@@ -176,7 +176,7 @@ export function VideoGallery() {
                       href={selectedVideo?.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="mt-2 mb-3 inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-xl transition-all duration-[150ms] text-white bg-[#1761ff] hover:bg-blue-700"
+                      class="btn-brand mt-2 mb-3"
                     >
                       Open video externally
                     </a>

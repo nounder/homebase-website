@@ -21,7 +21,7 @@ export function BasedHouseCard() {
           </p>
           <a
             href="https://warpcast.com/rafi/0x14fd4e8e"
-            class="btn"
+            class="btn-brand"
             target="_blank"
           >
             Learn more

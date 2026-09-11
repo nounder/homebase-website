@@ -61,7 +61,7 @@ export default function Events() {
     return (
       <div class="flex flex-col w-full max-w-[1140px] mx-auto z-10 mt-20">
         <div class="flex items-center justify-center py-12">
-          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600">
+          <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-brand">
           </div>
           <span class="ml-3 text-gray-600">
             Loading events...
@@ -112,7 +112,7 @@ export default function Events() {
                   {event.title}
                 </h3>
                 <div class="flex-shrink-0 ml-2">
-                  <div class="w-2 h-2 bg-blue-500 rounded-full">
+                  <div class="w-2 h-2 bg-brand rounded-full">
                   </div>
                 </div>
               </div>
@@ -148,7 +148,7 @@ export default function Events() {
                     href={event.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+                    class="inline-flex items-center text-brand hover:text-brand-dark font-medium transition-colors duration-200"
                   >
                     <span>
                       Learn More

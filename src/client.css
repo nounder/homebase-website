@@ -39,3 +39,70 @@
   --depth: 0;
   --noise: 0;
 }
+
+@theme {
+  --font-sans: "Lato", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #0000ff;
+  --color-brand-dark: #0000cc;
+}
+
+@layer components {
+  .btn-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    color: #fff;
+    font-weight: 700;
+    line-height: 1;
+    transition: background-color 150ms ease;
+  }
+
+  .btn-brand:hover {
+    background: var(--color-brand-dark);
+  }
+
+  /* Faint dot field echoing the logo, for use on brand-colored surfaces. */
+  .dot-field {
+    background-image: radial-gradient(
+      rgb(255 255 255 / 0.11) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 22px 22px;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dot-wave {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dot-wave > g {
+  animation: dot-wave 500ms ease-out backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-wave > g {
+    animation: none;
+  }
+}

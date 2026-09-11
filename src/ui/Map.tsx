@@ -10,7 +10,7 @@ export function Map() {
           >
             <iframe
               src="https://homebase-map-nextjs.vercel.app"
-              style="width: 100%; height: 94%; margin: 0; padding: 0; border: none; overflow: hidden; user-select: none; border-radius: 17px; border: 3px dashed rgba(23, 96, 255, 0.24);"
+              style="width: 100%; height: 94%; margin: 0; padding: 0; border: none; overflow: hidden; user-select: none; border-radius: 17px; border: 3px dashed rgba(0, 0, 255, 0.2);"
               allow="geolocation"
               // @ts-ignore
               scrolling="no"

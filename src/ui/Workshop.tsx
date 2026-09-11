@@ -94,7 +94,7 @@ function DayElement({ day }: DayElementProps) {
         }}
       >
         <div class="w-12 h-12 bg-white rounded-lg shadow-sm flex flex-col overflow-hidden mb-2">
-          <div class="bg-red-500 text-white text-xs font-semibold py-0.5 text-center">
+          <div class="bg-brand text-white text-xs font-semibold py-0.5 text-center">
             {new Date(day.date).toLocaleDateString("en-US", {
               month: "short",
             })}
@@ -280,10 +280,10 @@ export function WorkshopListCard() {
     return (
       <div class="relative bg-white w-full rounded-lg shadow-md border-[1px] border-gray-200">
         <div
-          class="flex justify-between border-b-[1px] border-gray-200 p-3"
+          class="flex flex-wrap gap-x-4 items-center justify-between border-b-[1px] border-gray-200 p-3"
           style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
         >
-          <h2 class="text-3xl font-bold p-1.5">
+          <h2 class="text-3xl max-sm:text-2xl font-bold p-1.5">
             Upcoming Livestreams
           </h2>
           <LocationPicker
@@ -295,7 +295,7 @@ export function WorkshopListCard() {
 
         <div class="flex flex-col gap-6 p-4">
           <div class="flex items-center justify-center py-12">
-            <Loader2 class="w-8 h-8 text-blue-600 animate-spin" />
+            <Loader2 class="w-8 h-8 text-brand animate-spin" />
           </div>
         </div>
       </div>
@@ -305,10 +305,10 @@ export function WorkshopListCard() {
   return (
     <div class="relative bg-white w-full rounded-lg shadow-md border-[1px] border-gray-200">
       <div
-        class="flex justify-between border-b-[1px] border-gray-200 p-3"
+        class="flex flex-wrap gap-x-4 items-center justify-between border-b-[1px] border-gray-200 p-3"
         style="background: linear-gradient(to bottom, rgba(245, 245, 245, 1), rgba(255, 255, 255, 1))"
       >
-        <h2 class="text-3xl p-1.5 font-bold" style={{}}>
+        <h2 class="text-3xl max-sm:text-2xl p-1.5 font-bold">
           Upcoming Livestreams
         </h2>
         <LocationPicker

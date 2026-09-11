@@ -15,18 +15,18 @@ export default function() {
       <Header />
 
       <div
-        class={`flex flex-col mt-16 w-full max-w-[840px] mx-auto z-10 relative gap-8`}
+        class={`flex flex-col mt-16 w-full max-w-[840px] mx-auto px-4 z-10 relative gap-8`}
       >
         <WorkshopListCard />
       </div>
 
       <div
-        class={`flex flex-col pt-6 w-full max-w-[960px] mx-auto z-10 relative gap-8`}
+        class={`flex flex-col pt-6 w-full max-w-[960px] mx-auto px-4 z-10 relative gap-8`}
       >
         <BasedHouseCard />
       </div>
       <div
-        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto z-10 relative gap-8`}
+        class={`flex flex-col pt-6 w-full max-w-[1140px] mx-auto px-4 z-10 relative gap-8`}
       >
         <VideoGallery />
       </div>

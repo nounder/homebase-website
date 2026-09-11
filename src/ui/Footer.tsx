@@ -1,10 +1,9 @@
-import { HeaderLogo } from "./Header.tsx"
 import { HouseLogo } from "./HouseLogo.tsx"
 import { Socials } from "./Socials.tsx"
 
 export function Footer() {
   return (
-    <div class="bg-[#1761ff] w-full p-5 overflow-hidden relative">
+    <div class="bg-brand w-full p-5 overflow-hidden relative">
       <div class="relative">
         {/* White curved top section */}
         <div
@@ -29,7 +28,7 @@ export function Footer() {
               <HouseLogo />
             </div>
 
-            <div class=" text-white">
+            <div class="text-white">
               <Socials />
             </div>
           </div>

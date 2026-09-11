@@ -39,3 +39,40 @@
   --depth: 0;
   --noise: 0;
 }
+
+@theme {
+  --font-sans: "Lato", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #0000ff;
+  --color-brand-dark: #0000cc;
+}
+
+@layer components {
+  .btn-brand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 9999px;
+    background: var(--color-brand);
+    color: #fff;
+    font-weight: 700;
+    line-height: 1;
+    transition: background-color 150ms ease;
+  }
+
+  .btn-brand:hover {
+    background: var(--color-brand-dark);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
